@@ -29,7 +29,7 @@ class Projects extends Component {
   }
 }
 
-//Used to define the data types(include PropTypes as a seperate import)
+//Used to define the data types(include "PropTypes" as a seperate import)
 Projects.propTypes = {
   projects: PropTypes.array,
   onDelete: PropTypes.func

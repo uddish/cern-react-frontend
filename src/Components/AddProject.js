@@ -32,7 +32,7 @@ class AddProject extends Component {
     e.preventDefault();
   }
 
-// Getting the above props from "categories" and mappinf them a single category
+// Getting the above props from "categories" and mapping them with a single category
   render() {
     let categoryOptions = this.props.categories.map(category => {
       return <option key={category} value={category}>{category}</option>

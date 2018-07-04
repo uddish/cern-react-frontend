@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Projects from './Components/Projects';
 import AddProject from './Components/AddProject';
+import Metadata from './Components/Metadata';
 import uuid from 'uuid';
 import './App.css';
 import $ from 'jquery';
@@ -51,6 +52,7 @@ class App extends Component {
     })
   }
 
+//Local static objects
   getProjects() {
     this.setState({projects: [
     	{
@@ -73,7 +75,7 @@ class App extends Component {
 
 //Use for initial binding(component has been rendered once)
   componentWillMount() {
-    // this.getProjects();
+    this.getProjects();
     // this.getMetadata();
   }
 
@@ -103,6 +105,7 @@ class App extends Component {
       <div className="App">
         <AddProject addProject={this.handleAddProject.bind(this)}/>
         <Projects projects={this.state.projects} onDelete={this.handleDeleteProject.bind(this)} />
+        <Metadata metadata={this.state.metadata}/>
       </div>
     );
   }

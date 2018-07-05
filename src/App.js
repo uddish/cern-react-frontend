@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Projects from './Components/Projects';
 import AddProject from './Components/AddProject';
 import Metadata from './Components/Metadata';
+import ApplicationsData from './Components/ApplicationsData';
 import uuid from 'uuid';
 import './App.css';
 import $ from 'jquery';
@@ -106,6 +107,7 @@ class App extends Component {
         <AddProject addProject={this.handleAddProject.bind(this)}/>
         <Projects projects={this.state.projects} onDelete={this.handleDeleteProject.bind(this)} />
         <Metadata metadata={this.state.metadata}/>
+        <ApplicationsData applicationData={this.state.applicationData}/>
       </div>
     );
   }

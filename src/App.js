@@ -36,6 +36,7 @@ class App extends Component {
   }
 
 //Fetching applications data from the API
+//TODO Replace this hardcoded value with the dynamic value from the url
   getApplicationsData() {
     $.ajax({
       url: 'http://localhost:8000/applications/3/',

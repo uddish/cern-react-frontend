@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Projects from './Components/Projects';
 import AddProject from './Components/AddProject';
-import Metadata from './Components/Metadata';
-import ApplicationsData from './Components/ApplicationsData';
+import Metadata from './Components/Metadata/Metadata';
+import ApplicationsData from './Components/Applications/ApplicationsData';
 import uuid from 'uuid';
 import './App.css';
 import $ from 'jquery';

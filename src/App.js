@@ -38,7 +38,7 @@ class App extends Component {
 //Fetching applications data from the API
   getApplicationsData() {
     $.ajax({
-      url: 'http://localhost:8000/applications/',
+      url: 'http://localhost:8000/applications/3/',
       dataType: 'json',
       cache: 'false',
       contentType: 'application/json',

@@ -12,8 +12,27 @@ class ApplicationsData extends Component {
     });
     return(
       <div className="ApplicationsData">
-        <h3>Application Data</h3>
-        {applicationDataItems}
+        <div className="container">
+          <div className="row">
+             <div className="col-md-6 col-md-offset-5">
+               <h1 className="title">Applications Data</h1>
+               <table>
+                <tr>
+                  <th>App Id</th>
+                  <th>App Name</th>
+                  <th>HDFS Root Dir</th>
+                  <th>HDFS Cluster</th>
+                  <th>App Owner</th>
+                  <th>App Owner Email</th>
+                  <th>Service Contact</th>
+                  <th>Service Contact Email</th>
+                  <th>Age</th>
+                </tr>
+                  {applicationDataItems}
+              </table>
+             </div>  
+          </div>
+        </div>
       </div>
     );
   }

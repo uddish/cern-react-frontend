@@ -112,8 +112,8 @@ class App extends Component {
     // );
     return(
       <div className="App">
-        <Metadata metadata={this.state.metadata}/>
         <ApplicationsData applicationData={this.state.applicationData}/>
+        <Metadata metadata={this.state.metadata}/>
       </div>
     );
   }

@@ -4,19 +4,17 @@ class ApplicationsDataItem extends Component {
 
   render()  {
     return (
-      <ul className = "ApplicationsData" type="none">
-      	<li>
-      		<strong>{this.props.applicationData.appid}</strong> )
-          &nbsp;&nbsp;{this.props.applicationData.appname}
-          &nbsp;&nbsp;&nbsp;&nbsp; {this.props.applicationData.hdfs_root_dir}
-          &nbsp;&nbsp;&nbsp;&nbsp; {this.props.applicationData.hdfs_cluster}
-          &nbsp;&nbsp;&nbsp;&nbsp; {this.props.applicationData.appowner}
-          &nbsp;&nbsp;&nbsp;&nbsp; {this.props.applicationData.appowner_email}
-          &nbsp;&nbsp;&nbsp;&nbsp; {this.props.applicationData.servicecontact}
-          &nbsp;&nbsp;&nbsp;&nbsp; {this.props.applicationData.servicecontact_email}
-          &nbsp;&nbsp;&nbsp;&nbsp; {this.props.applicationData.age}
-      	</li>
-      </ul>
+      <tr>
+      <td>{this.props.applicationData.appid}</td>
+        <td>{this.props.applicationData.appname}</td>
+        <td>{this.props.applicationData.hdfs_root_dir}</td>
+        <td>{this.props.applicationData.hdfs_cluster}</td>
+        <td>{this.props.applicationData.appowner}</td>
+        <td>{this.props.applicationData.appowner_email}</td>
+        <td>{this.props.applicationData.servicecontact}</td>
+        <td>{this.props.applicationData.servicecontact_email}</td>
+        <td>{this.props.applicationData.age}</td>
+      </tr>
     );
   }
 }

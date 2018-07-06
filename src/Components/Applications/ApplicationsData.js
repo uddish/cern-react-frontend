@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import ApplicationsDataItem from  './ApplicationsDataItem';
 
-class ApplicationsData extends Component {
 
+class ApplicationsData extends Component {
   render()  {
     let applicationDataItems;
     applicationDataItems = this.props.applicationData.map(applicationData =>  {
@@ -16,7 +16,7 @@ class ApplicationsData extends Component {
           <div className="row">
              <div className="col-md-6 col-md-offset-5">
                <h1 className="title">Applications Data</h1>
-               <table>
+               <table class="rwd-table">
                 <tr>
                   <th>App Id</th>
                   <th>App Name</th>

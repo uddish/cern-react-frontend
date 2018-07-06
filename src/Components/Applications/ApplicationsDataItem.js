@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 
 class ApplicationsDataItem extends Component {
-
   render()  {
     return (
       <tr>
-      <td>{this.props.applicationData.appid}</td>
+        <td>{this.props.applicationData.appid}</td>
         <td>{this.props.applicationData.appname}</td>
         <td>{this.props.applicationData.hdfs_root_dir}</td>
         <td>{this.props.applicationData.hdfs_cluster}</td>

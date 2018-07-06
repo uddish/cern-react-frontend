@@ -3,6 +3,7 @@ import Projects from './Components/Projects';
 import AddProject from './Components/AddProject';
 import Metadata from './Components/Metadata/Metadata';
 import ApplicationsData from './Components/Applications/ApplicationsData';
+import Backupsets from './Components/Backupsets/Backupsets';
 import uuid from 'uuid';
 import './App.css';
 import $ from 'jquery';
@@ -13,7 +14,8 @@ class App extends Component {
     this.state = {
       projects: [],
       metadata: [],
-      applicationData: []
+      applicationData: [],
+      backupsets: [],
     }
   }
 
@@ -54,37 +56,56 @@ class App extends Component {
     })
   }
 
-//Local static objects
-  getProjects() {
-    this.setState({projects: [
-    	{
-        id: uuid.v4(),
-        title: 'Web',
-        category: 'Web Design'
-      },
-      {
-        id: uuid.v4(),
-        title: 'Android',
-        category: 'Mobile Development'
-      },
-      {
-        id: uuid.v4(),
-        title: 'IOS',
-        category: 'Mobile Development'
-      },
-    ]});
+//Fetching backup sets data from the API
+  getBackupSets() {
+    $.ajax({
+      url: 'http://localhost:8000/backupsets/3/',
+      dataType: 'json',
+      cache: 'false',
+      contentType: 'application/json',
+      success: function(data) {
+        this.setState({backupsets: data}, function() {
+          console.log(this.state);
+        })
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.log(err);
+      }
+    })
   }
+
+//Local static objects
+  // getProjects() {
+  //   this.setState({projects: [
+  //   	{
+  //       id: uuid.v4(),
+  //       title: 'Web',
+  //       category: 'Web Design'
+  //     },
+  //     {
+  //       id: uuid.v4(),
+  //       title: 'Android',
+  //       category: 'Mobile Development'
+  //     },
+  //     {
+  //       id: uuid.v4(),
+  //       title: 'IOS',
+  //       category: 'Mobile Development'
+  //     },
+  //   ]});
+  // }
 
 //Use for initial binding(component has been rendered once)
   componentWillMount() {
-    this.getProjects();
+    // this.getProjects();
     // this.getMetadata();
   }
 
 //Use for API calls
   componentDidMount() {
-    this.getMetadata();
     this.getApplicationsData();
+    this.getBackupSets();
+    this.getMetadata();
   }
 
   handleAddProject(project)  {
@@ -114,6 +135,7 @@ class App extends Component {
     return(
       <div className="App">
         <ApplicationsData applicationData={this.state.applicationData}/>
+        <Backupsets backupsets={this.state.backupsets}/>
         <Metadata metadata={this.state.metadata}/>
       </div>
     );

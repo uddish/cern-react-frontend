@@ -1,21 +1,22 @@
 import React, {Component} from 'react';
 import ReactTable from 'react-table';
+import JsonTable from 'ts-react-json-table';
 
 
 class MetadataItem extends Component  {
 
   render()  {
-    return (
-      <ul className = "Metadata" type="none">
-      	<li>
-      		<strong>{this.props.metadata.id}</strong>
-          &nbsp;&nbsp;{this.props.metadata.hdfs_cluster}
-          &nbsp;&nbsp;&nbsp;&nbsp; {this.props.metadata.backupqueue}
-          &nbsp;&nbsp;&nbsp;&nbsp; {this.props.metadata.backupsetsize}
-          &nbsp;&nbsp;&nbsp;&nbsp; {this.props.metadata.namenode}
-      	</li>
-      </ul>
+      //change the title and location key based on your API
+      return (
+        <tr>
+          <td>{this.props.metadata.id}</td>
+          <td>{this.props.metadata.hdfs_cluster}</td>
+          <td>{this.props.metadata.backupqueue}</td>
+          <td>{this.props.metadata.backupsetsize}</td>
+          <td>{this.props.metadata.namenode}</td>
+      </tr>
     );
   }
 }
+
 export default MetadataItem;

@@ -14,8 +14,23 @@ class Metadata extends Component  {
 
     return (
     	<div className="Metadata">
-        <h3>Metadata</h3>
-        {metadataItems}
+          <div className="container">
+            <div className="row">
+               <div className="col-md-6 col-md-offset-5">
+                   <h1 className="title">Metadata</h1>
+                   <table>
+                    <tr>
+                      <th>ID</th>
+                      <th>HDFS CLUSTER</th>
+                      <th>BACKUP QUEUE</th>
+                      <th>BACKUP SET SIZE</th>
+                      <th>NAME NODE</th>
+                    </tr>
+                      {metadataItems}
+                  </table>
+               </div>  
+            </div>
+          </div>
       </div>
     );
   }

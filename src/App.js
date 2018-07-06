@@ -102,10 +102,16 @@ class App extends Component {
   }
 
   render() {
-    return (
+    // return (
+    //   <div className="App">
+    //     <AddProject addProject={this.handleAddProject.bind(this)}/>
+    //     <Projects projects={this.state.projects} onDelete={this.handleDeleteProject.bind(this)} />
+    //     <Metadata metadata={this.state.metadata}/>
+    //     <ApplicationsData applicationData={this.state.applicationData}/>
+    //   </div>
+    // );
+    return(
       <div className="App">
-        <AddProject addProject={this.handleAddProject.bind(this)}/>
-        <Projects projects={this.state.projects} onDelete={this.handleDeleteProject.bind(this)} />
         <Metadata metadata={this.state.metadata}/>
         <ApplicationsData applicationData={this.state.applicationData}/>
       </div>

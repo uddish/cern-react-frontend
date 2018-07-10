@@ -11,6 +11,21 @@ import $ from 'jquery';
 import { Navbar,NavItem,NavDropdown,MenuItem,Nav } from 'react-bootstrap';
 
 
+//To match router path
+const Route = ({ path, component }) => {
+  const pathname = window.location.pathname;
+  if(pathname.match(path))  {
+    return (
+      React.createElement(component)
+    );
+  }
+  else {
+    return null;
+  }
+};
+
+// <Route path='/applications' component={ApplicationsDataComponent}/>
+
 class App extends Component {
   constructor() {
     super();
@@ -107,7 +122,6 @@ class App extends Component {
     this.getApplicationsData();
     this.getBackupSets();
     this.getBackuparchivesRaw();
-    // this.getMetadata();
   }
 
   handleAddProject(project)  {
@@ -128,28 +142,37 @@ class App extends Component {
   render() {
     return(
       <div className="App">
+
         <Navbar>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="#home">Home</a>
+              <a href="/home">Home</a>
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
-            <NavItem eventKey={1} href="#">
+            <NavItem eventKey={1} href="/applications">
               Applications
             </NavItem>
-            <NavItem eventKey={2} href="#">
+            <NavItem eventKey={2} href="/backupsets">
               Backup Sets
             </NavItem>
-            <NavItem eventKey={2} href="#">
+            <NavItem eventKey={3} href="/backuparchives-raw">
               Backup Archives Raw Data
             </NavItem>
           </Nav>
-        </Navbar>;
+        </Navbar>
+        <Route path='/home' component={()=>
+            <div>
+            <ApplicationsData applicationData={this.state.applicationData}/>
+            <Backupsets backupsets={this.state.backupsets}/>
+            <BackuparchivesRawData backuparchivesRaw={this.state.backuparchivesRaw}/>
+            </div>
+          }/>
 
-        <ApplicationsData applicationData={this.state.applicationData}/>
-        <Backupsets backupsets={this.state.backupsets}/>
-        <BackuparchivesRawData backuparchivesRaw={this.state.backuparchivesRaw}/>
+        <Route path='/applications' component={()=><ApplicationsData applicationData={this.state.applicationData}/>}/>
+        <Route path='/backupsets' component={()=><Backupsets backupsets={this.state.backupsets}/>}/>
+        <Route path='/backuparchives-raw' component={()=><BackuparchivesRawData backuparchivesRaw={this.state.backuparchivesRaw}/>}/>
+
       </div>
     );
   }

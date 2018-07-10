@@ -16,7 +16,7 @@ class Metadata extends Component  {
     	<div className="Metadata">
           <div className="container">
             <div className="row">
-               <div className="col-md-6 col-md-offset-5">
+               <div>
                    <h1 className="title">Metadata</h1>
                    <table>
                     <tr>

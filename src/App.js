@@ -8,6 +8,8 @@ import BackuparchivesRawData from './Components/BackuparchivesRaw/Backuparchives
 import uuid from 'uuid';
 import './App.css';
 import $ from 'jquery';
+import { Navbar,NavItem,NavDropdown,MenuItem,Nav } from 'react-bootstrap';
+
 
 class App extends Component {
   constructor() {
@@ -56,6 +58,7 @@ class App extends Component {
         console.log(err);
       }
     })
+
   }
 
 //Fetching backup sets data from the API
@@ -94,31 +97,9 @@ class App extends Component {
       })
     }
 
-//Local static objects
-  // getProjects() {
-  //   this.setState({projects: [
-  //   	{
-  //       id: uuid.v4(),
-  //       title: 'Web',
-  //       category: 'Web Design'
-  //     },
-  //     {
-  //       id: uuid.v4(),
-  //       title: 'Android',
-  //       category: 'Mobile Development'
-  //     },
-  //     {
-  //       id: uuid.v4(),
-  //       title: 'IOS',
-  //       category: 'Mobile Development'
-  //     },
-  //   ]});
-  // }
-
 //Use for initial binding(component has been rendered once)
   componentWillMount() {
     // this.getProjects();
-    // this.getMetadata();
   }
 
 //Use for API calls
@@ -126,7 +107,7 @@ class App extends Component {
     this.getApplicationsData();
     this.getBackupSets();
     this.getBackuparchivesRaw();
-    this.getMetadata();
+    // this.getMetadata();
   }
 
   handleAddProject(project)  {
@@ -145,20 +126,30 @@ class App extends Component {
   }
 
   render() {
-    // return (
-    //   <div className="App">
-    //     <AddProject addProject={this.handleAddProject.bind(this)}/>
-    //     <Projects projects={this.state.projects} onDelete={this.handleDeleteProject.bind(this)} />
-    //     <Metadata metadata={this.state.metadata}/>
-    //     <ApplicationsData applicationData={this.state.applicationData}/>
-    //   </div>
-    // );
     return(
       <div className="App">
+        <Navbar>
+          <Navbar.Header>
+            <Navbar.Brand>
+              <a href="#home">Home</a>
+            </Navbar.Brand>
+          </Navbar.Header>
+          <Nav>
+            <NavItem eventKey={1} href="#">
+              Applications
+            </NavItem>
+            <NavItem eventKey={2} href="#">
+              Backup Sets
+            </NavItem>
+            <NavItem eventKey={2} href="#">
+              Backup Archives Raw Data
+            </NavItem>
+          </Nav>
+        </Navbar>;
+
         <ApplicationsData applicationData={this.state.applicationData}/>
         <Backupsets backupsets={this.state.backupsets}/>
         <BackuparchivesRawData backuparchivesRaw={this.state.backuparchivesRaw}/>
-        <Metadata metadata={this.state.metadata}/>
       </div>
     );
   }

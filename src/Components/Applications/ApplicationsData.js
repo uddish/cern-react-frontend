@@ -14,7 +14,7 @@ class ApplicationsData extends Component {
       <div className="ApplicationsData">
         <div className="container">
           <div className="row">
-             <div className="col-md-6 col-md-offset-5">
+             <div>
                <h1 className="title">Applications Data</h1>
                <table class="rwd-table">
                 <tr>

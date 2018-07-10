@@ -14,7 +14,7 @@ class Backupsets extends Component  {
       <div className="Backupsets">
         <div className="container">
           <div className="row">
-             <div className="col-md-6 col-md-offset-5">
+             <div>
                <h1 className="title">Backup Sets</h1>
                <table>
                 <tr>

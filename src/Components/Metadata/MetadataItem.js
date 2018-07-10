@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import ReactTable from 'react-table';
-import JsonTable from 'ts-react-json-table';
 
 
 class MetadataItem extends Component  {

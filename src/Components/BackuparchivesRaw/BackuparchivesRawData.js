@@ -14,7 +14,7 @@ class BackuparchivesRawData extends Component {
       <div className="BackuparchivesRawData">
         <div className="container">
           <div className="row">
-             <div className="col-md-6 col-md-offset-5">
+             <div>
                <h1 className="title">Backup Archives Raw Data</h1>
                <table class="rwd-table">
                 <tr>

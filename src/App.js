@@ -128,19 +128,24 @@ class App extends Component {
         <Navbar>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="/">Home</a>
+              <a href="/"><font color="white">Home</font></a>
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
             <NavItem eventKey={1} href="/applications">
-              Applications
+              <font color="white">Applications</font>
             </NavItem>
             <NavItem eventKey={2} href="/backupsets">
-              Backup Sets
+              <font color="white">Backup Sets</font>
             </NavItem>
             <NavItem eventKey={3} href="/backuparchives-raw">
-              Backup Archives Raw Data
+              <font color="white">Backup Archives Raw Data</font>
             </NavItem>
+          </Nav>
+          <Nav pullRight>
+          <NavItem eventKey={1} href="#">
+            <font color="white">Sign Out</font>
+          </NavItem>
           </Nav>
         </Navbar>
 

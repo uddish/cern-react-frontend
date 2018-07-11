@@ -10,3 +10,7 @@ th, td {
     padding: 10px;
     font-family: sans-serif;
 }
+.navbar,
+.navbar-default{
+    background: #203470
+}

@@ -9,7 +9,6 @@ import uuid from 'uuid';
 import './App.css';
 import $ from 'jquery';
 import { Navbar,NavItem,NavDropdown,MenuItem,Nav } from 'react-bootstrap';
-import Sidebar from 'react-sidebar';
 
 
 //To match router path
@@ -32,35 +31,10 @@ class App extends Component {
     super();
     this.state = {
       projects: [],
-      metadata: [],
       applicationData: [],
       backupsets: [],
       backuparchivesRaw: [],
-      sidebarOpen: false
     }
-    this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
-  }
-
-  onSetSidebarOpen(open) {
-    this.setState({sidebarOpen: open});
-  }
-
-//Fetching metadata from the API
-  getMetadata()  {
-    $.ajax({
-      url: 'http://localhost:8000/metadata/',
-      dataType: 'json',
-      cache: false,
-      contentType : 'application/json',
-      success: function(data) {
-        this.setState({metadata: data}, function() {
-          console.log(this.state);
-        })
-      }.bind(this),
-      error: function(xhr, status, err)  {
-        console.log(err);
-      }
-    });
   }
 
 //Fetching applications data from the API
@@ -150,12 +124,6 @@ class App extends Component {
     var sidebarContent = <b>Sidebar content</b>;
     return(
       <div className="App">
-
-        <Sidebar sidebar={sidebarContent}
-               open={this.state.sidebarOpen}
-               onSetOpen={this.onSetSidebarOpen}>
-        <b>Main content</b>
-        </Sidebar>
 
         <Navbar>
           <Navbar.Header>

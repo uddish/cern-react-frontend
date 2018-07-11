@@ -9,6 +9,7 @@ import uuid from 'uuid';
 import './App.css';
 import $ from 'jquery';
 import { Navbar,NavItem,NavDropdown,MenuItem,Nav } from 'react-bootstrap';
+import Sidebar from 'react-sidebar';
 
 
 //To match router path
@@ -35,7 +36,13 @@ class App extends Component {
       applicationData: [],
       backupsets: [],
       backuparchivesRaw: [],
+      sidebarOpen: false
     }
+    this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
+  }
+
+  onSetSidebarOpen(open) {
+    this.setState({sidebarOpen: open});
   }
 
 //Fetching metadata from the API
@@ -140,13 +147,20 @@ class App extends Component {
   }
 
   render() {
+    var sidebarContent = <b>Sidebar content</b>;
     return(
       <div className="App">
+
+        <Sidebar sidebar={sidebarContent}
+               open={this.state.sidebarOpen}
+               onSetOpen={this.onSetSidebarOpen}>
+        <b>Main content</b>
+        </Sidebar>
 
         <Navbar>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="/home">Home</a>
+              <a href="/">Home</a>
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
@@ -161,13 +175,14 @@ class App extends Component {
             </NavItem>
           </Nav>
         </Navbar>
-        <Route path='/home' component={()=>
+
+        <Route path='/$' component={()=>
             <div>
             <ApplicationsData applicationData={this.state.applicationData}/>
             <Backupsets backupsets={this.state.backupsets}/>
             <BackuparchivesRawData backuparchivesRaw={this.state.backuparchivesRaw}/>
             </div>
-          }/>
+        }/>
 
         <Route path='/applications' component={()=><ApplicationsData applicationData={this.state.applicationData}/>}/>
         <Route path='/backupsets' component={()=><Backupsets backupsets={this.state.backupsets}/>}/>

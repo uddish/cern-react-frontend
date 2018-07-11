@@ -1,41 +1,11 @@
 import React, {Component} from 'react';
 import ApplicationsDataItem from  './ApplicationsDataItem';
-import $ from 'jquery';
 
 
 class ApplicationsData extends Component {
-  constructor() {
-    super();
-    this.state = {
-      applicationData: [],
-    }
-  }
-
-  getApplicationsData() {
-    $.ajax({
-      url: 'http://localhost:8000/applications/3/',
-      dataType: 'json',
-      cache: 'false',
-      contentType: 'application/json',
-      success: function(data) {
-        this.setState({applicationData: data}, function() {
-          console.log(this.state);
-        })
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.log(err);
-      }
-    })
-
-  }
-
-  componentDidMount() {
-    this.getApplicationsData();
-  }
-
   render()  {
     let applicationDataItems;
-    applicationDataItems = this.state.applicationData.map(applicationData =>  {
+    applicationDataItems = this.props.applicationData.map(applicationData =>  {
       return (
         <ApplicationsDataItem key={applicationData.id} applicationData = {applicationData} />
       );

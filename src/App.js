@@ -4,6 +4,7 @@ import AddProject from './Components/AddProject';
 import Metadata from './Components/Metadata/Metadata';
 import ApplicationsData from './Components/Applications/ApplicationsData';
 import Backupsets from './Components/Backupsets/Backupsets';
+import Backupoperations from './Components/BackupOperations/Backupoperations';
 import BackuparchivesRawData from './Components/BackuparchivesRaw/BackuparchivesRawData';
 import uuid from 'uuid';
 import './App.css';
@@ -34,6 +35,7 @@ class App extends Component {
       applicationData: [],
       backupsets: [],
       backuparchivesRaw: [],
+      backupoperations: [],
     }
   }
 
@@ -93,6 +95,24 @@ class App extends Component {
       })
     }
 
+    //Fetching backup operations from the API
+    getBackupOperations() {
+      $.ajax({
+        url: 'http://localhost:8000/backup-operations/3/',
+        dataType: 'json',
+        cache: 'false',
+        contentType: 'application/json',
+        success: function(data) {
+          this.setState({backupoperations: data}, function() {
+            console.log(this.state);
+          })
+        }.bind(this),
+        error: function(xhr, status, err) {
+          console.log(err);
+        }
+      })
+    }
+
 //Use for initial binding(component has been rendered once)
   componentWillMount() {
     // this.getProjects();
@@ -103,6 +123,7 @@ class App extends Component {
     this.getApplicationsData();
     this.getBackupSets();
     this.getBackuparchivesRaw();
+    this.getBackupOperations();
   }
 
   handleAddProject(project)  {
@@ -141,6 +162,9 @@ class App extends Component {
             <NavItem eventKey={3} href="/backuparchives-raw">
               <font color="white">Backup Archives Raw Data</font>
             </NavItem>
+            <NavItem eventKey={4} href="/backup-operations">
+              <font color="white">Backup Operations</font>
+            </NavItem>
           </Nav>
           <Nav pullRight>
           <NavItem eventKey={1} href="#">
@@ -160,6 +184,7 @@ class App extends Component {
         <Route path='/applications' component={()=><ApplicationsData applicationData={this.state.applicationData}/>}/>
         <Route path='/backupsets' component={()=><Backupsets backupsets={this.state.backupsets}/>}/>
         <Route path='/backuparchives-raw' component={()=><BackuparchivesRawData backuparchivesRaw={this.state.backuparchivesRaw}/>}/>
+        <Route path='/backup-operations' component={()=><Backupoperations backupoperations={this.state.backupoperations}/>}/>
 
       </div>
     );

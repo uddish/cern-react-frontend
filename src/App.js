@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Projects from './Components/Projects';
-import AddProject from './Components/AddProject';
 import Metadata from './Components/Metadata/Metadata';
 import ApplicationsData from './Components/Applications/ApplicationsData';
 import Backupsets from './Components/Backupsets/Backupsets';
@@ -31,7 +29,6 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      projects: [],
       applicationData: [],
       backupsets: [],
       backuparchivesRaw: [],
@@ -115,7 +112,6 @@ class App extends Component {
 
 //Use for initial binding(component has been rendered once)
   componentWillMount() {
-    // this.getProjects();
   }
 
 //Use for API calls
@@ -124,21 +120,6 @@ class App extends Component {
     this.getBackupSets();
     this.getBackuparchivesRaw();
     this.getBackupOperations();
-  }
-
-  handleAddProject(project)  {
-    let projects = this.state.projects;
-    //Pushing the new project into the "projects array"
-    projects.push(project);
-    //Resetting the project states
-    this.setState({projects: projects});
-  }
-
-  handleDeleteProject(id) {
-    let projects = this.state.projects;
-    let index = projects.findIndex(x => x.id === id);
-    projects.splice(index, 1)
-    this.setState({projects: projects});
   }
 
   render() {

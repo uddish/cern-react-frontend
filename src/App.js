@@ -67,7 +67,7 @@ class App extends Component {
       cache: 'false',
       contentType: 'application/json',
       success: function(data) {
-        this.setState({backupsets: data}, function() {
+        this.setState({backupsets: data.results}, function() {
           console.log(this.state);
         })
       }.bind(this),
@@ -85,7 +85,7 @@ class App extends Component {
         cache: 'false',
         contentType: 'application/json',
         success: function(data) {
-          this.setState({backuparchivesRaw: data}, function() {
+          this.setState({backuparchivesRaw: data.results}, function() {
             console.log(this.state);
           })
         }.bind(this),

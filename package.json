@@ -8,7 +8,6 @@
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.4.1",
     "react-json-table": "^0.1.1",
-    "react-paginate": "^5.2.3",
     "react-scripts": "1.1.4",
     "uuid": "^3.3.2"
   },

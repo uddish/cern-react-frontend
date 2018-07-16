@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import BackupoperationsItem from './BackupoperationsItem';
 
 
-
 class Backupoperations extends Component  {
   render()  {
     let backupoperationsItems = this.props.backupoperations.map(backupoperations => {

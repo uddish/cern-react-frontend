@@ -23,7 +23,7 @@ class Backupoperations extends Component  {
       cache: 'false',
       contentType: 'application/json',
       success: function(data) {
-        this.setState({backupoperations: data}, function() {
+        this.setState({backupoperations: data.results}, function() {
           console.log(this.state);
         })
       }.bind(this),

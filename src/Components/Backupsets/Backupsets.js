@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import BackupsetsItem from './BackupsetsItem';
 import $ from 'jquery';
+import {Pager} from 'react-bootstrap';
 
 
 class Backupsets extends Component  {
@@ -8,7 +9,10 @@ class Backupsets extends Component  {
     super();
     this.state = {
       backupsets: [],
+      pageCount: 1
     }
+    this.previousButtonClicked = this.previousButtonClicked.bind(this);
+    this.nextButtonClicked = this.nextButtonClicked.bind(this);
   }
 
   componentDidMount() {
@@ -18,7 +22,7 @@ class Backupsets extends Component  {
 //Fetching backup sets data from the API
   getBackupSets() {
     $.ajax({
-      url: 'http://localhost:8000/backupsets/3/',
+      url: 'http://localhost:8000/backupsets/3/?page=' + (this.state.pageCount),
       dataType: 'json',
       cache: 'false',
       contentType: 'application/json',
@@ -31,6 +35,20 @@ class Backupsets extends Component  {
         console.log(err);
       }
     })
+  }
+
+  previousButtonClicked() {
+    this.setState({
+      pageCount: this.state.pageCount - 1
+    })
+    this.getBackupSets();
+  }
+
+  nextButtonClicked() {
+    this.setState({
+      pageCount: this.state.pageCount + 1
+    })
+    this.getBackupSets();
   }
 
   render()  {
@@ -56,6 +74,12 @@ class Backupsets extends Component  {
                 </tr>
                   {backupsetsItems}
               </table>
+              <Pager>
+                <Pager.Item onClick= {this.previousButtonClicked}>&larr; Previous</Pager.Item>
+                <span> </span>
+                <Pager.Item onClick= {this.nextButtonClicked}>Next &rarr;</Pager.Item>
+              </Pager>
+              { this.state.pageCount }
              </div>  
           </div>
         </div>

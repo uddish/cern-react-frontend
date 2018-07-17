@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import Metadata from './Components/Metadata/Metadata';
 import ApplicationsData from './Components/Applications/ApplicationsData';
 import Backupsets from './Components/Backupsets/Backupsets';
 import Backupoperations from './Components/BackupOperations/Backupoperations';
 import BackuparchivesRawData from './Components/BackuparchivesRaw/BackuparchivesRawData';
-import uuid from 'uuid';
 import './App.css';
-import $ from 'jquery';
-import { Navbar,NavItem,NavDropdown,MenuItem,Nav } from 'react-bootstrap';
+import { Navbar,NavItem,NavDropdown,Nav } from 'react-bootstrap';
 
 
 //To match router path
@@ -26,9 +23,6 @@ const Route = ({ path, component }) => {
 // <Route path='/applications' component={ApplicationsDataComponent}/>
 
 class App extends Component {
-  constructor() {
-    super();
-  }
 
   //Use for initial binding(component has been rendered once)
   componentWillMount() {
@@ -40,7 +34,6 @@ class App extends Component {
   }
 
   render() {
-    var sidebarContent = <b>Sidebar content</b>;
     return(
       <div className="App">
 
@@ -73,9 +66,9 @@ class App extends Component {
 
         <Route path='/$' component={()=>
             <div>
-            <ApplicationsData applicationData={ApplicationsData}/>
-            <Backupsets backupsets={Backupsets}/>
-            <BackuparchivesRawData backuparchivesRaw={BackuparchivesRawData}/>
+              <ApplicationsData applicationData={ApplicationsData}/>
+              <Backupsets backupsets={Backupsets}/>
+              <BackuparchivesRawData backuparchivesRaw={BackuparchivesRawData}/>
             </div>
         }/>
 

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import BackupsetsItem from './BackupsetsItem';
 import $ from 'jquery';
-import {ButtonToolbar, Button} from 'react-bootstrap';
+import {Pager} from 'react-bootstrap';
 
 
 class Backupsets extends Component  {
@@ -103,11 +103,21 @@ class Backupsets extends Component  {
                 </tbody>
                   {backupsetsItems}
               </table>
-              <ButtonToolbar>
-                <Button bsStyle="primary" bsSize="small" onClick= {this.previousButtonClicked}>&larr; Previous</Button>
-                <Button bsStyle="primary" bsSize="small" onClick= {this.nextButtonClicked}>Next &rarr;</Button>
-              </ButtonToolbar>
-              <h6>Page {this.state.pageCount} of {this.state.totalPageCount}</h6>
+              <div id="pagination-container">
+                <div id="page-no-text">
+                  <h6>Page {this.state.pageCount} of {this.state.totalPageCount}</h6>
+                </div>
+                <div id="pagination-btn">
+                  <Pager>
+                    <Pager.Item onClick= {this.previousButtonClicked}>
+                      &larr; Previous
+                    </Pager.Item>
+                    <Pager.Item onClick= {this.nextButtonClicked}>
+                      Next &rarr;
+                    </Pager.Item>
+                  </Pager>
+                </div>
+               </div>
              </div>  
           </div>
         </div>

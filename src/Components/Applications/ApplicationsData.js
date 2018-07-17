@@ -3,25 +3,13 @@ import ApplicationsDataItem from  './ApplicationsDataItem';
 import $ from 'jquery';
 
 
-const Route = ({ path, component }) => {
-  const pathname = window.location.pathname;
-  if(pathname.match(path))  {
-    return (
-      React.createElement(component)
-    );
-  }
-  else {
-    return null;
-  }
-};
-
 class ApplicationsData extends Component {
   constructor() {
     super();
     this.state = {
       applicationData: [],
+    }
   }
-}
 
   componentDidMount() {
     this.getApplicationsData();

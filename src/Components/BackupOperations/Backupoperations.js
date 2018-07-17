@@ -1,10 +1,40 @@
 import React, {Component} from 'react';
 import BackupoperationsItem from './BackupoperationsItem';
+import $ from 'jquery';
 
 
 class Backupoperations extends Component  {
+  constructor() {
+    super();
+    this.state = {
+      backupoperations: [],
+    }
+  }
+
+  componentDidMount() {
+    this.getBackupOperations();
+  }
+
+  //Fetching backup operations from the API
+  getBackupOperations() {
+    $.ajax({
+      url: 'http://localhost:8000/backup-operations/3/',
+      dataType: 'json',
+      cache: 'false',
+      contentType: 'application/json',
+      success: function(data) {
+        this.setState({backupoperations: data}, function() {
+          console.log(this.state);
+        })
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.log(err);
+      }
+    })
+  }
+
   render()  {
-    let backupoperationsItems = this.props.backupoperations.map(backupoperations => {
+    let backupoperationsItems = this.state.backupoperations.map(backupoperations => {
       return(
         <BackupoperationsItem key={backupoperations.id} backupsets = {backupoperations} />
       );

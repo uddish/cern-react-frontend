@@ -3,29 +3,17 @@ import BackupsetsItem from './BackupsetsItem';
 import $ from 'jquery';
 
 
-const Route = ({ path, component }) => {
-  const pathname = window.location.pathname;
-  if(pathname.match(path))  {
-    return (
-      React.createElement(component)
-    );
-  }
-  else {
-    return null;
-  }
-};
-
 class Backupsets extends Component  {
   constructor() {
     super();
     this.state = {
       backupsets: [],
+    }
   }
-}
 
-componentDidMount() {
-  this.getBackupSets();
-}
+  componentDidMount() {
+    this.getBackupSets();
+  }
 
 //Fetching backup sets data from the API
   getBackupSets() {

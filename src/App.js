@@ -28,56 +28,15 @@ const Route = ({ path, component }) => {
 class App extends Component {
   constructor() {
     super();
-    this.state = {
-      backuparchivesRaw: [],
-      backupoperations: [],
-    }
   }
 
-  //Fetching backup archives raw data from the API
-    getBackuparchivesRaw() {
-      $.ajax({
-        url: 'http://localhost:8000/backuparchives-raw/3/',
-        dataType: 'json',
-        cache: 'false',
-        contentType: 'application/json',
-        success: function(data) {
-          this.setState({backuparchivesRaw: data.results}, function() {
-            console.log(this.state);
-          })
-        }.bind(this),
-        error: function(xhr, status, err) {
-          console.log(err);
-        }
-      })
-    }
-
-    //Fetching backup operations from the API
-    getBackupOperations() {
-      $.ajax({
-        url: 'http://localhost:8000/backup-operations/3/',
-        dataType: 'json',
-        cache: 'false',
-        contentType: 'application/json',
-        success: function(data) {
-          this.setState({backupoperations: data}, function() {
-            console.log(this.state);
-          })
-        }.bind(this),
-        error: function(xhr, status, err) {
-          console.log(err);
-        }
-      })
-    }
-
-//Use for initial binding(component has been rendered once)
+  //Use for initial binding(component has been rendered once)
   componentWillMount() {
   }
 
-//Use for API calls
+  //Use for API calls
   componentDidMount() {
-    this.getBackuparchivesRaw();
-    this.getBackupOperations();
+
   }
 
   render() {
@@ -116,14 +75,14 @@ class App extends Component {
             <div>
             <ApplicationsData applicationData={ApplicationsData}/>
             <Backupsets backupsets={Backupsets}/>
-            <BackuparchivesRawData backuparchivesRaw={this.state.backuparchivesRaw}/>
+            <BackuparchivesRawData backuparchivesRaw={BackuparchivesRawData}/>
             </div>
         }/>
 
         <Route path='/applications' component={ApplicationsData}/>
         <Route path='/backupsets' component={Backupsets}/>
-        <Route path='/backuparchives-raw' component={()=><BackuparchivesRawData backuparchivesRaw={this.state.backuparchivesRaw}/>}/>
-        <Route path='/backup-operations' component={()=><Backupoperations backupoperations={this.state.backupoperations}/>}/>
+        <Route path='/backuparchives-raw' component={BackuparchivesRawData}/>
+        <Route path='/backup-operations' component={Backupoperations}/>
 
       </div>
     );

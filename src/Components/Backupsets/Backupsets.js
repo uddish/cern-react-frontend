@@ -10,7 +10,7 @@ class Backupsets extends Component  {
     this.state = {
       backupsets: [],
       pageCount: 1,
-      totalPageCount: 0
+      totalPageCount: 0,
     }
     this.previousButtonClicked = this.previousButtonClicked.bind(this);
     this.nextButtonClicked = this.nextButtonClicked.bind(this);
@@ -30,8 +30,9 @@ class Backupsets extends Component  {
       success: function(data) {
         this.setState({
           backupsets: data.results,
-          totalPageCount: parseInt(data.count/10)+1,
+          totalPageCount: data.count,
         }, function() {
+          this.calculateTotalPageCount()
           console.log(this.state);
         })
       }.bind(this),
@@ -39,6 +40,20 @@ class Backupsets extends Component  {
         console.log(err);
       }
     })
+  }
+
+  calculateTotalPageCount() {
+    //If the value is a float, add 1 to it
+    if(this.state.totalPageCount % 10 != 0) {
+      this.setState({
+        totalPageCount: parseInt(this.state.totalPageCount/10) + 1
+      })
+    }
+    else {
+      this.setState({
+        totalPageCount: (this.state.totalPageCount/10)
+      })
+    }
   }
 
   previousButtonClicked() {

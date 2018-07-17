@@ -30,7 +30,6 @@ class App extends Component {
 
   //Use for API calls
   componentDidMount() {
-
   }
 
   render() {

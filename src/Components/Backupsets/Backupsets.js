@@ -1,11 +1,52 @@
 import React, {Component} from 'react';
 import BackupsetsItem from './BackupsetsItem';
+import $ from 'jquery';
 
 
+const Route = ({ path, component }) => {
+  const pathname = window.location.pathname;
+  if(pathname.match(path))  {
+    return (
+      React.createElement(component)
+    );
+  }
+  else {
+    return null;
+  }
+};
 
 class Backupsets extends Component  {
+  constructor() {
+    super();
+    this.state = {
+      backupsets: [],
+  }
+}
+
+componentDidMount() {
+  this.getBackupSets();
+}
+
+//Fetching backup sets data from the API
+  getBackupSets() {
+    $.ajax({
+      url: 'http://localhost:8000/backupsets/3/',
+      dataType: 'json',
+      cache: 'false',
+      contentType: 'application/json',
+      success: function(data) {
+        this.setState({backupsets: data.results}, function() {
+          console.log(this.state);
+        })
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.log(err);
+      }
+    })
+  }
+
   render()  {
-    let backupsetsItems = this.props.backupsets.map(backupsets => {
+    let backupsetsItems = this.state.backupsets.map(backupsets => {
       return(
         <BackupsetsItem key={backupsets.id} backupsets = {backupsets} />
       );

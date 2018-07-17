@@ -29,49 +29,9 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      applicationData: [],
-      backupsets: [],
       backuparchivesRaw: [],
       backupoperations: [],
     }
-  }
-
-//Fetching applications data from the API
-//TODO Replace this hardcoded value with the dynamic value from the url
-  getApplicationsData() {
-    $.ajax({
-      url: 'http://localhost:8000/applications/3/',
-      dataType: 'json',
-      cache: 'false',
-      contentType: 'application/json',
-      success: function(data) {
-        this.setState({applicationData: data}, function() {
-          console.log(this.state);
-        })
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.log(err);
-      }
-    })
-
-  }
-
-//Fetching backup sets data from the API
-  getBackupSets() {
-    $.ajax({
-      url: 'http://localhost:8000/backupsets/3/',
-      dataType: 'json',
-      cache: 'false',
-      contentType: 'application/json',
-      success: function(data) {
-        this.setState({backupsets: data.results}, function() {
-          console.log(this.state);
-        })
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.log(err);
-      }
-    })
   }
 
   //Fetching backup archives raw data from the API
@@ -116,8 +76,6 @@ class App extends Component {
 
 //Use for API calls
   componentDidMount() {
-    this.getApplicationsData();
-    this.getBackupSets();
     this.getBackuparchivesRaw();
     this.getBackupOperations();
   }
@@ -156,14 +114,14 @@ class App extends Component {
 
         <Route path='/$' component={()=>
             <div>
-            <ApplicationsData applicationData={this.state.applicationData}/>
-            <Backupsets backupsets={this.state.backupsets}/>
+            <ApplicationsData applicationData={ApplicationsData}/>
+            <Backupsets backupsets={Backupsets}/>
             <BackuparchivesRawData backuparchivesRaw={this.state.backuparchivesRaw}/>
             </div>
         }/>
 
-        <Route path='/applications' component={()=><ApplicationsData applicationData={this.state.applicationData}/>}/>
-        <Route path='/backupsets' component={()=><Backupsets backupsets={this.state.backupsets}/>}/>
+        <Route path='/applications' component={ApplicationsData}/>
+        <Route path='/backupsets' component={Backupsets}/>
         <Route path='/backuparchives-raw' component={()=><BackuparchivesRawData backuparchivesRaw={this.state.backuparchivesRaw}/>}/>
         <Route path='/backup-operations' component={()=><Backupoperations backupoperations={this.state.backupoperations}/>}/>
 

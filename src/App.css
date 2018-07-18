@@ -18,15 +18,14 @@ th, td {
   width:80%;
   margin : 0;
 }
-
 #page-no-text {
   width:20%;
   margin : 0;
   float : left ;
 }
-
-#spagination-btn {
-  width:20%;
-  margin : 0;
-  float : right ;
+.container  {
+  display: -webkit-flex; /* Safari */
+   -webkit-align-items: center; /* Safari 7.0+ */
+   display: flex;
+   align-items: center;
 }

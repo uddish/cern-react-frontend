@@ -110,7 +110,7 @@ componentDidMount() {
                   <Pager>
                     <Pager.Item onClick= {this.previousButtonClicked}>
                       &larr; Previous
-                    </Pager.Item>
+                    </Pager.Item>{' '}
                     <Pager.Item onClick= {this.nextButtonClicked}>
                       Next &rarr;
                     </Pager.Item>

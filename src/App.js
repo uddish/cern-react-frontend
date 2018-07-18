@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ApplicationsData from './Components/Applications/ApplicationsData';
+import HomeData from './Components/Home/HomeData';
 import Backupsets from './Components/Backupsets/Backupsets';
 import Backupoperations from './Components/BackupOperations/Backupoperations';
 import BackuparchivesRawData from './Components/BackuparchivesRaw/BackuparchivesRawData';
@@ -55,6 +56,9 @@ class App extends Component {
             <NavItem eventKey={4} href="/backup-operations">
               <font color="white">Backup Operations</font>
             </NavItem>
+            <NavItem eventKey={5} href="#">
+              <font color="white">Reports</font>
+            </NavItem>
           </Nav>
           <Nav pullRight>
           <NavItem eventKey={1} href="#">
@@ -62,15 +66,11 @@ class App extends Component {
           </NavItem>
           </Nav>
         </Navbar>
-
         <Route path='/$' component={()=>
             <div>
-              <ApplicationsData applicationData={ApplicationsData}/>
-              <Backupsets backupsets={Backupsets}/>
-              <BackuparchivesRawData backuparchivesRaw={BackuparchivesRawData}/>
+              <HomeData homeData={HomeData}/>
             </div>
         }/>
-
         <Route path='/applications' component={ApplicationsData}/>
         <Route path='/backupsets' component={Backupsets}/>
         <Route path='/backuparchives-raw' component={BackuparchivesRawData}/>

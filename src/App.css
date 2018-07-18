@@ -29,3 +29,9 @@ th, td {
   display: flex;
   align-items: center;
 }
+.row {
+  width: 100%;
+}
+.home-application-data  {
+  color: #495969;
+}

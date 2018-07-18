@@ -1,19 +1,6 @@
 import React, {Component} from 'react';
 
 class ApplicationsDataItem extends Component {
-  constructor() {
-    super();
-    this.state = {
-      applicationData: [],
-    }
-  }
-
-  componentDidUpdate()  {
-    this.setState({
-      applicationData: this.props.applicationData
-    })
-  }
-
   render()  {
     return (
       <tr>

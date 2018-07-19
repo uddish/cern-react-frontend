@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import HomeDataItem from './HomeDataItem';
 import $ from 'jquery';
+import ExclusionList from '../ExclusionList/ExclusionList';
 
 
 class HomeData extends Component {
@@ -8,6 +9,7 @@ class HomeData extends Component {
     super();
     this.state = {
       homeApplicationData: [],
+      exclusionList: [],
     }
   }
 
@@ -38,6 +40,7 @@ class HomeData extends Component {
         <HomeDataItem key={homeApplicationData.id} homeApplicationData = {homeApplicationData} />
       );
     });
+
     return(
       <div className="HomeData">
         <div className="container">

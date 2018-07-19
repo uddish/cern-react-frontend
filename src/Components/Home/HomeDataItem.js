@@ -1,7 +1,15 @@
 import React, {Component} from 'react';
+import ExclusionListItem from '../ExclusionList/ExclusionListItem';
+import ExclusionList from '../ExclusionList/ExclusionList';
 
 
 class HomeDataItem extends Component {
+  constructor() {
+    super();
+    this.state = {
+        exclusionList: [],
+    }
+  }
   render()  {
     return (
       <div>
@@ -30,9 +38,13 @@ class HomeDataItem extends Component {
                 <h3>App Owner</h3>
                 <h4 class="home-application-data">{this.props.homeApplicationData.appowner}</h4>
               </div>
-              <div className="col-xs-6">
+              <div className="col-xs-4">
                 <h3>File Age</h3>
                 <h4 class="home-application-data">{this.props.homeApplicationData.age}</h4>
+              </div>
+              <div className="col-xs-4">
+                <h3>Exclusion List</h3>
+                <h4 class="home-application-data"><ExclusionList exlusionList={this.state.exclusionList}/></h4>
               </div>
             </div>
 

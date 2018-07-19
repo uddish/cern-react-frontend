@@ -2,6 +2,43 @@ import React, {Component} from 'react';
 
 
 class LastBackupItem extends Component  {
+  constructor() {
+    super();
+    this.state = {
+      lastBackupTimestamp: "",
+      startTime: "",
+      completionTime: ""
+    }
+
+  }
+
+  //The original time format is in the format (2018-07-04T19:59:02Z)
+  //We are taking the substring parts from it and storing it in the new
+  //variable states
+  convertDateTimeFields() {
+    this.setState({
+      lastBackupTimestamp: this.props.lastBackup.last_backup_timestamp.substring(0,10)
+       + " ("
+       + this.props.lastBackup.last_backup_timestamp.substring(11,19)
+       + ")"
+       ,
+       startTime: this.props.lastBackup.start_time.substring(0,10)
+        + " ("
+        + this.props.lastBackup.start_time.substring(11,19)
+        + ")"
+        ,
+        completionTime: this.props.lastBackup.completion_time.substring(0,10)
+         + " ("
+         + this.props.lastBackup.completion_time.substring(11,19)
+         + ")"
+    })
+  }
+
+  componentDidMount() {
+    this.convertDateTimeFields();
+  }
+
+
   render()  {
     return (
       <div>
@@ -15,11 +52,11 @@ class LastBackupItem extends Component  {
               </div>
               <div className="col-xs-4">
                 <h3>Last Backup Timestamp</h3>
-                <h4 class="home-application-data">{this.props.lastBackup.last_backup_timestamp}</h4>
+                <h4 class="home-application-data">{this.state.lastBackupTimestamp}</h4>
               </div>
               <div className="col-xs-4">
                 <h3>Start Time</h3>
-                <h4 class="home-application-data">{this.props.lastBackup.start_time}</h4>
+                <h4 class="home-application-data">{this.state.startTime}</h4>
               </div>
             </div>
 
@@ -28,7 +65,7 @@ class LastBackupItem extends Component  {
             <div className="row">
               <div className="col-xs-4">
                 <h3>Completion Time</h3>
-                <h4 class="home-application-data">{this.props.lastBackup.completion_time}</h4>
+                <h4 class="home-application-data">{this.state.completionTime}</h4>
               </div>
               <div className="col-xs-8">
                 <h3>Status</h3>

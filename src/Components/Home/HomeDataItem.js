@@ -49,7 +49,6 @@ class HomeDataItem extends Component {
                 <h4 class="home-application-data"><ExclusionList exlusionList={this.state.exclusionList}/></h4>
               </div>
             </div>
-
             <br />
             <LastBackup lastBackup={this.state.lastBackup}/>
         </div>

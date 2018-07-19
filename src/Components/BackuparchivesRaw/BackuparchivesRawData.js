@@ -44,7 +44,7 @@ componentDidMount() {
 
   calculateTotalPageCount() {
     //If the value is a float, add 1 to it
-    if(this.state.totalPageCount % 10 != 0) {
+    if(this.state.totalPageCount % 10 !== 0) {
       this.setState({
         totalPageCount: (this.state.totalPageCount/10) + 1
       })

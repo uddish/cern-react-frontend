@@ -9,7 +9,6 @@ class HomeData extends Component {
     super();
     this.state = {
       homeApplicationData: [],
-      exclusionList: [],
     }
   }
 

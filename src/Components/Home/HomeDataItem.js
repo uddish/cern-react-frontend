@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ExclusionListItem from '../ExclusionList/ExclusionListItem';
 import ExclusionList from '../ExclusionList/ExclusionList';
+import LastBackup from '../LastBackupOperation/LastBackup';
 
 
 class HomeDataItem extends Component {
@@ -8,6 +9,7 @@ class HomeDataItem extends Component {
     super();
     this.state = {
         exclusionList: [],
+        lastBackup: [],
     }
   }
   render()  {
@@ -49,7 +51,7 @@ class HomeDataItem extends Component {
             </div>
 
             <br />
-
+            <LastBackup lastBackup={this.state.lastBackup}/>
         </div>
       </div>
 

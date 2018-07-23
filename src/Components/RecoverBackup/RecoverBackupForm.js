@@ -16,11 +16,14 @@ class RecoverBackupForm extends React.Component {
   }
 
   handleChange(event)  {
-    this.setState({cluster_name: event.target.value});
+    this.setState({
+      cluster_name: event.target.value,
+      application_name: event.target.value,
+    });
   }
 
   handleSubmit(event)  {
-    console.log('CLUSTER NAME VALUE -> : ' + this.state.cluster_name);
+    console.log('CLUSTER NAME VALUE -> : ' + this.state.application_name);
     event.preventDefault();
   }
 
@@ -38,7 +41,9 @@ class RecoverBackupForm extends React.Component {
               type="text"/>
           </FormGroup>
 
-          <FormGroup controlId="formControlsSelect">
+          <FormGroup controlId="formControlsSelect"
+            value={this.state.application_name}
+            onChange={this.handleChange}>
             <ControlLabel>Application Name</ControlLabel>
             <FormControl className="form-text-view"
               componentClass="select" placeholder="select">

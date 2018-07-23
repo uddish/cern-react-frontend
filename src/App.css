@@ -45,3 +45,12 @@ th, td {
   width: 100%;
   height: auto;
 }
+.form-group  {
+   margin: 30px;
+}
+.form-text-view  {
+  width: 40%;
+}
+.text-margin-left  {
+  margin-left: 30px;
+}

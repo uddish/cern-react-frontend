@@ -4,6 +4,7 @@ import HomeData from './Components/Home/HomeData';
 import Backupsets from './Components/Backupsets/Backupsets';
 import Backupoperations from './Components/BackupOperations/Backupoperations';
 import BackuparchivesRawData from './Components/BackuparchivesRaw/BackuparchivesRawData';
+import RecoverBackupForm from './Components/RecoverBackup/RecoverBackupForm';
 import './App.css';
 import { Navbar,NavItem,Nav } from 'react-bootstrap';
 
@@ -61,6 +62,9 @@ class App extends Component {
             </NavItem>
           </Nav>
           <Nav pullRight>
+          <NavItem eventKey={1} href="/recover-backup">
+            <font color="white">Recover Backup</font>
+          </NavItem>
           <NavItem eventKey={1} href="#">
             <font color="white">Sign Out</font>
           </NavItem>
@@ -75,6 +79,7 @@ class App extends Component {
         <Route path='/backupsets' component={Backupsets}/>
         <Route path='/backuparchives-raw' component={BackuparchivesRawData}/>
         <Route path='/backup-operations' component={Backupoperations}/>
+        <Route path='/recover-backup' component={RecoverBackupForm}/>
 
       </div>
     );

@@ -16,14 +16,22 @@ class RecoverBackupForm extends React.Component {
   }
 
   handleChange(event)  {
-    this.setState({
-      cluster_name: event.target.value,
-      application_name: event.target.value,
-    });
+    const target = event.target;
+    if(target.name === 'cluster_name')  {
+      this.setState({cluster_name: event.target.value})
+    }
+    else if(target.name === 'application_name')  {
+      this.setState({application_name: event.target.value})
+    }
+    else if(target.name === 'list_of_files')  {
+      this.setState({list_of_files: event.target.value})
+    }
   }
 
   handleSubmit(event)  {
-    console.log('CLUSTER NAME VALUE -> : ' + this.state.application_name);
+    console.log('CLUSTER NAME -> ' + this.state.cluster_name);
+    console.log('APPLICATION NAME -> ' + this.state.application_name);
+    console.log('FILES NAME -> ' + this.state.list_of_files);
     event.preventDefault();
   }
 
@@ -38,7 +46,7 @@ class RecoverBackupForm extends React.Component {
              onChange={this.handleChange}>
             <ControlLabel>Cluster Name</ControlLabel>
             <FormControl className="form-text-view"
-              type="text"/>
+              type="text" name="cluster_name"/>
           </FormGroup>
 
           <FormGroup controlId="formControlsSelect"
@@ -46,7 +54,8 @@ class RecoverBackupForm extends React.Component {
             onChange={this.handleChange}>
             <ControlLabel>Application Name</ControlLabel>
             <FormControl className="form-text-view"
-              componentClass="select" placeholder="select">
+              componentClass="select" placeholder="select"
+              name="application_name">
               <option value="option_1">Option 1</option>
               <option value="option_2">Option 2</option>
               <option value="option_3">Option 3</option>
@@ -54,10 +63,13 @@ class RecoverBackupForm extends React.Component {
             </FormControl>
           </FormGroup>
 
-          <FormGroup controlId="formControlsSelect">
+          <FormGroup controlId="formControlsSelect"
+            value={this.state.list_of_files}
+            onChange={this.handleChange}>
             <ControlLabel>List of Files</ControlLabel>
             <FormControl className="form-text-view"
-              componentClass="select" placeholder="select">
+              componentClass="select" placeholder="select"
+              name="list_of_files">
               <option value="option_1">Option 1</option>
               <option value="option_2">Option 2</option>
               <option value="option_3">Option 3</option>

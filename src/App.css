@@ -54,3 +54,11 @@ th, td {
 .text-margin-left  {
   margin-left: 30px;
 }
+.date-picker-input  {
+  margin-left: 30px;
+  margin-bottom: 20px;
+  padding: 7px;
+}
+.react-datepicker__time-list {
+    padding: 0;
+}

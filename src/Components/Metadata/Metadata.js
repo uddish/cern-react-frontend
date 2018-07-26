@@ -26,7 +26,7 @@ class Metadata extends Component  {
   //Fetching metadata from the API
     getMetadata()  {
       $.ajax({
-        url: 'http://127.0.0.1:8000/metadata/',
+        url: 'http://hadoop-backup-catalog.web.cern.ch/metadata/',
         dataType: 'json',
         cache: false,
         contentType : 'application/json',

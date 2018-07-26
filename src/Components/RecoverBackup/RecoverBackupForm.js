@@ -56,15 +56,19 @@ class RecoverBackupForm extends React.Component {
       <div>
         <h2 className="text-margin-left">Request a Backup Recovery</h2>
         <form onSubmit={this.handleSubmit}>
-          <FormGroup className="form-group"
-             controlId="formBasicText"
-             value={this.state.cluster_name}
-             onChange={this.handleChange}>
+          <FormGroup controlId="formControlsSelect"
+            value={this.state.cluster_name}
+            onChange={this.handleChange}>
             <ControlLabel>Cluster Name</ControlLabel>
             <FormControl className="form-text-view"
-              type="text" name="cluster_name"/>
+              componentClass="select" placeholder="select"
+              name="cluster_name">
+              <option value="option_1">Option 1</option>
+              <option value="option_2">Option 2</option>
+              <option value="option_3">Option 3</option>
+              <option value="option_4">Option 4</option>
+            </FormControl>
           </FormGroup>
-
           <FormGroup controlId="formControlsSelect"
             value={this.state.application_name}
             onChange={this.handleChange}>
@@ -78,19 +82,13 @@ class RecoverBackupForm extends React.Component {
               <option value="option_4">Option 4</option>
             </FormControl>
           </FormGroup>
-
-          <FormGroup controlId="formControlsSelect"
-            value={this.state.list_of_files}
-            onChange={this.handleChange}>
+          <FormGroup className="form-group"
+             controlId="formBasicText"
+             value={this.state.list_of_files}
+             onChange={this.handleChange}>
             <ControlLabel>List of Files</ControlLabel>
             <FormControl className="form-text-view"
-              componentClass="select" placeholder="select"
-              name="list_of_files">
-              <option value="option_1">Option 1</option>
-              <option value="option_2">Option 2</option>
-              <option value="option_3">Option 3</option>
-              <option value="option_4">Option 4</option>
-            </FormControl>
+              type="text" name="list_of_files"/>
           </FormGroup>
           <h5 className="text-margin-left">Recovery Date and Time</h5>
           <DatePicker

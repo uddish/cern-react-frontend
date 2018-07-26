@@ -23,7 +23,7 @@ class Backupsets extends Component  {
 //Fetching backup sets data from the API
   getBackupSets() {
     $.ajax({
-      url: 'http://localhost:8000/backupsets/3/?page=' + (this.state.pageCount),
+      url: 'http://127.0.0.1:8000/backupsets/3/?page=' + (this.state.pageCount),
       dataType: 'json',
       cache: 'false',
       contentType: 'application/json',

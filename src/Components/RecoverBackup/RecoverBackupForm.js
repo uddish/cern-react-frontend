@@ -3,16 +3,26 @@ import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
+import BackupsRecovered from './BackupsRecovered';
+import axios from 'axios';
 
 
 class RecoverBackupForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      username: 'Uddish Verma',
       cluster_name: '',
       application_name: '',
       list_of_files: '',
-      selected_date: moment()
+      selected_date: moment(),
+      requested_date: moment(),
+      status: '',
+      recovery_state: '',
+      recovery_job_id: '',
+      recovery_start_time: '',
+      recovery_end_time: '',
+      staging_directory: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -45,10 +55,41 @@ class RecoverBackupForm extends React.Component {
   }
 
   handleSubmit(event)  {
-    console.log('CLUSTER NAME -> ' + this.state.cluster_name);
-    console.log('APPLICATION NAME -> ' + this.state.application_name);
-    console.log('FILES NAME -> ' + this.state.selected_date);
     event.preventDefault();
+
+    const data = {
+      username: "Uddish Verma",
+      cluster_name: this.state.cluster_name,
+      application_name: this.state.application_name,
+      // selected_date: null,
+      // requested_date: null,
+      status: "PENDING",
+      list_of_files: this.state.list_of_files,
+      recovery_state: "PENDING",
+      recovery_job_id: 20,
+      staging_directory: "abc",
+    }
+
+    console.log(data);
+
+    // axios.post('http://127.0.0.1:8000/backup-recovery/', { data }, {
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     }
+    //   }).then(res => {
+    //     console.log(res);
+    //     console.log(res.data);
+    //   })
+    axios({
+      url: 'http://127.0.0.1:8000/backup-recovery/',
+      method: 'post',
+      data: data,
+      headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+      }
+    }).then(res => {
+        console.log(res);
+      })
   }
 
   render() {
@@ -105,12 +146,7 @@ class RecoverBackupForm extends React.Component {
         <br />
         <div className="text-margin-left">
         <h2>Backups Recovered</h2>
-        <h3>File 1</h3>
-        <h4>Destination: <a>abc/xyz/abc</a></h4>
-        <h3>File 2</h3>
-        <h4>Destination: <a>abc/xyz/abc</a></h4>
-        <h3>File 3</h3>
-        <h4>Destination: <a>abc/xyz/abc</a></h4>
+        <BackupsRecovered backupsRecovered={this.state.backupsRecovered}/>
         </div>
       </div>
     );

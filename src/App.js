@@ -22,7 +22,6 @@ const Route = ({ path, component }) => {
   }
 };
 
-// <Route path='/applications' component={ApplicationsDataComponent}/>
 
 class App extends Component {
 

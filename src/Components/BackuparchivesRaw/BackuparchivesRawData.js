@@ -23,7 +23,7 @@ componentDidMount() {
 //Fetching backup archives raw data from the API
   getBackuparchivesRaw() {
     $.ajax({
-      url: 'http://hadoop-backup-catalog.web.cern.ch/backuparchives-raw/3/?page='+ (this.state.pageCount),
+      url: 'https://hadoop-backup-catalog.web.cern.ch/backuparchives-raw/3/?page='+ (this.state.pageCount),
       dataType: 'json',
       cache: 'false',
       contentType: 'application/json',

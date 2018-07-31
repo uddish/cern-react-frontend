@@ -8,7 +8,6 @@ import RecoverBackupForm from './Components/RecoverBackup/RecoverBackupForm';
 import './App.css';
 import { Navbar,NavItem,Nav } from 'react-bootstrap';
 
-
 //To match router path
 const Route = ({ path, component }) => {
   const pathname = window.location.pathname;

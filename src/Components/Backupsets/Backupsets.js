@@ -23,7 +23,7 @@ class Backupsets extends Component  {
 //Fetching backup sets data from the API
   getBackupSets() {
     $.ajax({
-      url: 'http://hadoop-backup-catalog.web.cern.ch/backupsets/3/?page=' + (this.state.pageCount),
+      url: 'https://hadoop-backup-catalog.web.cern.ch/backupsets/3/?page=' + (this.state.pageCount),
       dataType: 'json',
       cache: 'false',
       contentType: 'application/json',

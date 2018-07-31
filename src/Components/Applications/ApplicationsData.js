@@ -17,7 +17,7 @@ class ApplicationsData extends Component {
 
   getApplicationsData() {
     $.ajax({
-      url: 'http://hadoop-backup-catalog.web.cern.ch/applications/3/',
+      url: 'https://hadoop-backup-catalog.web.cern.ch/applications/3/',
       dataType: 'json',
       cache: 'false',
       contentType: 'application/json',

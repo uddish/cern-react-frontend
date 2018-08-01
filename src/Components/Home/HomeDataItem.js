@@ -50,9 +50,9 @@ class HomeDataItem extends Component {
               </div>
             </div>
             <br />
-            <LastBackup lastBackup={this.state.lastBackup}/>
+          </div>
+          <LastBackup lastBackup={this.state.lastBackup}/>
         </div>
-      </div>
 
     );
   }

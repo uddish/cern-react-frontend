@@ -7,6 +7,7 @@ import BackuparchivesRawData from './Components/BackuparchivesRaw/Backuparchives
 import RecoverBackupForm from './Components/RecoverBackup/RecoverBackupForm';
 import './App.css';
 import { Navbar,NavItem,Nav } from 'react-bootstrap';
+import $ from 'jquery';
 
 //To match router path
 const Route = ({ path, component }) => {
@@ -23,13 +24,38 @@ const Route = ({ path, component }) => {
 
 
 class App extends Component {
-
-  //Use for initial binding(component has been rendered once)
-  componentWillMount() {
+  constructor() {
+    super();
+    this.state = {
+      username: '',
   }
+}
+  //Use for initial binding(component has been rendered once)
+  // componentWillMount() {
+  // }
 
   //Use for API calls
   componentDidMount() {
+    this.getUserDetails();
+  }
+
+  getUserDetails()  {
+    $.ajax({
+      url: 'https://hbackup-catalog.web.cern.ch/auth',
+      dataType: 'json',
+      cache: 'false',
+      contentType: 'application/json',
+      success: function(data) {
+        this.setState({
+          username: data.username,
+        }, function() {
+          console.log(this.state);
+        })
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.log(err);
+      }
+    })
   }
 
   render() {

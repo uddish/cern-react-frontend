@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import BackupsetsItem from './BackupsetsItem';
 import $ from 'jquery';
 import { BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
@@ -54,8 +53,6 @@ class Backupsets extends Component  {
             <div className="card">
               <div className="header">
                 <h2 className="text-margin-left-10px">Backup Operations</h2>
-                <hr></hr>
-                <br />
                 <br />
               </div>
               <div className="content">
@@ -74,7 +71,7 @@ class Backupsets extends Component  {
                   </TableHeaderColumn>
                   <TableHeaderColumn
                     dataField='boid'
-                    width="25%"
+                    width="20%"
                     filter={ { type: 'TextFilter'} }
                     dataSort>
                     BOID

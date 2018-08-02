@@ -33,32 +33,48 @@ class ApplicationsData extends Component {
   }
 
   render()  {
-    let applicationDataItems = this.state.applicationData.map(applicationData =>  {
-      return (
-        <ApplicationsDataItem key={applicationData.id} applicationData = {applicationData} />
-      );
-    });
     return(
-      <div className="ApplicationsData">
-        <div className="container">
-          <div className="row">
-             <div>
-               <h1 className="title">Applications Data</h1>
-               <table class="rwd-table">
-                <tr>
-                  <th>App Id</th>
-                  <th>App Name</th>
-                  <th>HDFS Root Dir</th>
-                  <th>HDFS Cluster</th>
-                  <th>App Owner</th>
-                  <th>App Owner Email</th>
-                  <th>Service Contact</th>
-                  <th>Service Contact Email</th>
-                  <th>Age</th>
-                </tr>
-                  {applicationDataItems}
-              </table>
-             </div>  
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-12">
+            <div className="card card-plain">
+              <div className="header">
+                <h2 className="title margin-30px">Applications Data</h2>
+              </div>
+              <div className="content table-responsive table-full-width margin-30px">
+                <table className="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>App Id</th>
+                      <th>App Name</th>
+                      <th>HDFS Root Dir</th>
+                      <th>HDFS Cluster</th>
+                      <th>App Owner</th>
+                      <th>App Owner Email</th>
+                      <th>Service Contact</th>
+                      <th>Service Contact Email</th>
+                      <th>Age</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {this.state.applicationData.map(applicationData => (
+                    <tr key={applicationData.appid}>
+                      <td>{applicationData.appid}</td>
+                      <td>{applicationData.appname}</td>
+                      <td>{applicationData.hdfs_root_dir}</td>
+                      <td>{applicationData.hdfs_cluster}</td>
+                      <td>{applicationData.appowner}</td>
+                      <td>{applicationData.appowner_email}</td>
+                      <td>{applicationData.servicecontact}</td>
+                      <td>{applicationData.servicecontact_email}</td>
+                      <td>{applicationData.age}</td>
+                    </tr>
+                  ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>

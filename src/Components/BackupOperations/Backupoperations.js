@@ -55,7 +55,6 @@ class Backupoperations extends Component  {
                 <h2 className="text-margin-left-10px">Backup Operations</h2>
                 <hr></hr>
                 <br />
-                <br />
               </div>
               <div className="content">
                 <BootstrapTable
@@ -73,7 +72,7 @@ class Backupoperations extends Component  {
                   </TableHeaderColumn>
                   <TableHeaderColumn
                     dataField='boid'
-                    width="25%"
+                    width="20%"
                     filter={ { type: 'TextFilter'} }
                     dataSort>
                     BOID

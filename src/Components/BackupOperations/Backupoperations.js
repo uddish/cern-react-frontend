@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import BackupoperationsItem from './BackupoperationsItem';
 import $ from 'jquery';
-import {Pager} from 'react-bootstrap';
+import { BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 
 
 class Backupoperations extends Component  {
@@ -9,11 +9,7 @@ class Backupoperations extends Component  {
     super();
     this.state = {
       backupoperations: [],
-      pageCount: 1,
-      totalPageCount: 0,
     }
-    this.previousButtonClicked = this.previousButtonClicked.bind(this);
-    this.nextButtonClicked = this.nextButtonClicked.bind(this);
   }
 
   componentDidMount() {
@@ -23,16 +19,14 @@ class Backupoperations extends Component  {
   //Fetching backup operations from the API
   getBackupOperations() {
     $.ajax({
-      url: 'https://hadoop-backup-catalog.web.cern.ch/backup-operations/3/?page=' + (this.state.pageCount),
+      url: 'https://hadoop-backup-catalog.web.cern.ch/backup-operations/3/',
       dataType: 'json',
       cache: 'false',
       contentType: 'application/json',
       success: function(data) {
         this.setState({
-          backupoperations: data.results,
-          totalPageCount: data.count,
+          backupoperations: data,
           }, function() {
-          this.calculateTotalPageCount()
           console.log(this.state);
         })
       }.bind(this),
@@ -42,87 +36,82 @@ class Backupoperations extends Component  {
     })
   }
 
-  calculateTotalPageCount() {
-    //If the value is a float, add 1 to it
-    if(this.state.totalPageCount % 10 !== 0) {
-      this.setState({
-        totalPageCount: parseInt(this.state.totalPageCount/10) + 1
-      })
-    }
-    else {
-      this.setState({
-        totalPageCount: (this.state.totalPageCount/10)
-      })
-    }
-  }
+  render() {
+    const options = {
+      sizePerPage: 10,
+      prePage: 'Previous',
+      nextPage: 'Next',
+      firstPage: 'First',
+      lastPage: 'Last',
+      hideSizePerPage: true,
+    };
 
-  previousButtonClicked() {
-    if(this.state.pageCount > 1)  {
-      this.setState({
-        pageCount: this.state.pageCount - 1
-      }, function() {
-        console.log('Decreasing page count ' + this.state.pageCount)
-        this.getBackupOperations()
-      }
-    )}
-  }
-
-  nextButtonClicked() {
-    if(this.state.pageCount < this.state.totalPageCount)  {
-      this.setState({
-        pageCount: this.state.pageCount + 1
-      }, function() {
-        console.log('Increasing page count ' + this.state.pageCount)
-        this.getBackupOperations()
-      }
-    )}
-  }
-
-  render()  {
-    let backupoperationsItems = this.state.backupoperations.map(backupoperations => {
-      return(
-        <BackupoperationsItem key={backupoperations.id} backupsets = {backupoperations} />
-      );
-    });
-    return(
-      <div className="Backupoperations">
-        <div className="container">
-          <div className="row">
-             <div>
-               <h1 className="title">Backup Operations</h1>
-               <table>
-                 <tbody>
-                  <tr>
-                    <th>App Id</th>
-                    <th>BOID</th>
-                    <th>Backup Type</th>
-                    <th>Last Backup</th>
-                    <th>Start Time </th>
-                    <th>Completion Time</th>
-                    <th>Status Time</th>
-                  </tr>
-                </tbody>
-                  {backupoperationsItems}
-              </table>
-              <div id="pagination-container">
-                <div id="page-no-text">
-                  <h6>Page {this.state.pageCount} of {this.state.totalPageCount}</h6>
-                </div>
-              <div id="pagination-btn">
-                <Pager>
-                  <Pager.Item onClick= {this.previousButtonClicked}>
-                    &larr; Previous
-                  </Pager.Item>{' '}
-                  <Pager.Item onClick= {this.nextButtonClicked}>
-                    Next &rarr;
-                  </Pager.Item>
-                </Pager>
+    return (
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-12">
+            <div className="card">
+              <div className="header">
+                <h2 className="text-margin-left-10px">Backup Operations</h2>
+                <hr></hr>
+                <br />
+                <br />
               </div>
-             </div>
-           </div> 
+              <div className="content">
+                <BootstrapTable
+                  data={this.state.backupoperations}
+                  bordered={false}
+                  striped
+                  pagination={true}
+                  options={options}>
+                  <TableHeaderColumn
+                    dataField='appid'
+                    isKey
+                    width="15%"
+                    dataSort>
+                    App Id
+                  </TableHeaderColumn>
+                  <TableHeaderColumn
+                    dataField='boid'
+                    width="25%"
+                    filter={ { type: 'TextFilter'} }
+                    dataSort>
+                    BOID
+                  </TableHeaderColumn>
+                  <TableHeaderColumn
+                    dataField='backup_type'
+                    width="25%"
+                    dataSort>
+                    Backup Type
+                  </TableHeaderColumn>
+                  <TableHeaderColumn
+                    dataField='last_backup_timestamp'
+                    width="30%"
+                    dataSort>
+                    Last Backup Timestamp
+                  </TableHeaderColumn>
+                  <TableHeaderColumn
+                    dataField='start_time'
+                    width="35%">
+                    Start Time
+                  </TableHeaderColumn>
+                  <TableHeaderColumn
+                    dataField='completion_time'
+                    width="25%">
+                    Completion Time
+                  </TableHeaderColumn>
+                  <TableHeaderColumn
+                    dataField='status'
+                    width="25%">
+                    status
+                  </TableHeaderColumn>
+                </BootstrapTable>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
     );
   }
 }

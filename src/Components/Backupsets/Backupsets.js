@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import BackupsetsItem from './BackupsetsItem';
 import $ from 'jquery';
-import {Pager} from 'react-bootstrap';
+import { BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 
 
 class Backupsets extends Component  {
@@ -9,11 +10,7 @@ class Backupsets extends Component  {
     super();
     this.state = {
       backupsets: [],
-      pageCount: 1,
-      totalPageCount: 0,
     }
-    this.previousButtonClicked = this.previousButtonClicked.bind(this);
-    this.nextButtonClicked = this.nextButtonClicked.bind(this);
   }
 
   componentDidMount() {
@@ -23,16 +20,14 @@ class Backupsets extends Component  {
 //Fetching backup sets data from the API
   getBackupSets() {
     $.ajax({
-      url: 'https://hadoop-backup-catalog.web.cern.ch/backupsets/3/?page=' + (this.state.pageCount),
+      url: 'https://hadoop-backup-catalog.web.cern.ch/backupsets/3/',
       dataType: 'json',
       cache: 'false',
       contentType: 'application/json',
       success: function(data) {
         this.setState({
-          backupsets: data.results,
-          totalPageCount: data.count,
+          backupsets: data,
         }, function() {
-          this.calculateTotalPageCount()
           console.log(this.state);
         })
       }.bind(this),
@@ -42,88 +37,80 @@ class Backupsets extends Component  {
     })
   }
 
-  calculateTotalPageCount() {
-    //If the value is a float, add 1 to it
-    if(this.state.totalPageCount % 10 !== 0) {
-      this.setState({
-        totalPageCount: parseInt(this.state.totalPageCount/10) + 1
-      })
-    }
-    else {
-      this.setState({
-        totalPageCount: (this.state.totalPageCount/10)
-      })
-    }
-  }
+  render() {
+    const options = {
+      sizePerPage: 10,
+      prePage: 'Previous',
+      nextPage: 'Next',
+      firstPage: 'First',
+      lastPage: 'Last',
+      hideSizePerPage: true,
+    };
 
-  previousButtonClicked() {
-    if(this.state.pageCount > 1)  {
-      this.setState({
-        pageCount: this.state.pageCount - 1
-      }, function() {
-        console.log('Decreasing page count ' + this.state.pageCount)
-        this.getBackupSets()
-      }
-    )}
-  }
-
-  nextButtonClicked() {
-    if(this.state.pageCount < this.state.totalPageCount)  {
-      this.setState({
-        pageCount: this.state.pageCount + 1
-      }, function() {
-        console.log('Increasing page count ' + this.state.pageCount)
-        this.getBackupSets()
-      }
-    )}
-  }
-
-  render()  {
-    let backupsetsItems = this.state.backupsets.map(backupsets => {
-      return(
-        <BackupsetsItem key={backupsets.id} backupsets = {backupsets} />
-      );
-    });
-    return(
-      <div className="Backupsets">
-        <div className="container">
-          <div className="row">
-             <div>
-               <h1 className="title">Backup Sets</h1>
-               <table>
-                 <tbody>
-                  <tr>
-                    <th>App Id</th>
-                    <th>BOID</th>
-                    <th>BSID</th>
-                    <th>Backupset Name</th>
-                    <th>Status</th>
-                    <th>No. of Files</th>
-                  </tr>
-                </tbody>
-                  {backupsetsItems}
-              </table>
-              <div id="pagination-container">
-                <div id="page-no-text">
-                  <h6>Page {this.state.pageCount} of {this.state.totalPageCount}</h6>
-                </div>
-                <div id="pagination-btn">
-                  <Pager>
-                    <Pager.Item onClick= {this.previousButtonClicked}>
-                      &larr; Previous
-                    </Pager.Item>{' '}
-                    <Pager.Item onClick= {this.nextButtonClicked}>
-                      Next &rarr;
-                    </Pager.Item>
-                  </Pager>
-                </div>
-               </div>
-             </div>  
+    return (
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-12">
+            <div className="card">
+              <div className="header">
+                <h2 className="text-margin-left-10px">Backup Operations</h2>
+                <hr></hr>
+                <br />
+                <br />
+              </div>
+              <div className="content">
+                <BootstrapTable
+                  data={this.state.backupsets}
+                  bordered={false}
+                  striped
+                  pagination={true}
+                  options={options}>
+                  <TableHeaderColumn
+                    dataField='appid'
+                    isKey
+                    width="15%"
+                    dataSort>
+                    App Id
+                  </TableHeaderColumn>
+                  <TableHeaderColumn
+                    dataField='boid'
+                    width="25%"
+                    filter={ { type: 'TextFilter'} }
+                    dataSort>
+                    BOID
+                  </TableHeaderColumn>
+                  <TableHeaderColumn
+                    dataField='bsid'
+                    width="15%"
+                    dataSort>
+                    BSID
+                  </TableHeaderColumn>
+                  <TableHeaderColumn
+                    dataField='backupset_name'
+                    width="40%"
+                    dataSort>
+                    Backupset Name
+                  </TableHeaderColumn>
+                  <TableHeaderColumn
+                    dataField='status'
+                    width="25%">
+                    Status
+                  </TableHeaderColumn>
+                  <TableHeaderColumn
+                    dataField='num_files'
+                    width="20%">
+                    No. of Files
+                  </TableHeaderColumn>
+                </BootstrapTable>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
     );
   }
+
 }
 
 export default Backupsets;

@@ -81,7 +81,7 @@ class App extends Component {
             <NavItem eventKey={4} href="/backup-operations">
               <font color="white">Backup Operations</font>
             </NavItem>
-            <NavItem eventKey={5} href="#">
+            <NavItem eventKey={5} href="/reports">
               <font color="white">Reports</font>
             </NavItem>
           </Nav>

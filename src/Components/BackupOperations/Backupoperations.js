@@ -53,17 +53,17 @@ class Backupoperations extends Component  {
             <div className="card">
               <div className="header">
                 <h2 className="text-margin-left-10px">Backup Operations</h2>
-                <hr></hr>
                 <br />
               </div>
               <div className="content">
-                <BootstrapTable
+                <BootstrapTable data={ this.state.backupoperations } exportCSV={ true }
                   data={this.state.backupoperations}
-                  bordered={false}
+                  bordered={true}
                   striped
                   pagination={true}
                   options={options}>
                   <TableHeaderColumn
+                    dataAlign='center'
                     dataField='appid'
                     isKey
                     width="15%"
@@ -71,6 +71,7 @@ class Backupoperations extends Component  {
                     App Id
                   </TableHeaderColumn>
                   <TableHeaderColumn
+                    dataAlign='center'
                     dataField='boid'
                     width="20%"
                     filter={ { type: 'TextFilter'} }
@@ -78,28 +79,33 @@ class Backupoperations extends Component  {
                     BOID
                   </TableHeaderColumn>
                   <TableHeaderColumn
+                    dataAlign='center'
                     dataField='backup_type'
                     width="25%"
                     dataSort>
                     Backup Type
                   </TableHeaderColumn>
                   <TableHeaderColumn
+                    dataAlign='center'
                     dataField='last_backup_timestamp'
                     width="30%"
                     dataSort>
                     Last Backup Timestamp
                   </TableHeaderColumn>
                   <TableHeaderColumn
+                    dataAlign='center'
                     dataField='start_time'
                     width="35%">
                     Start Time
                   </TableHeaderColumn>
                   <TableHeaderColumn
+                    dataAlign='center'
                     dataField='completion_time'
                     width="25%">
                     Completion Time
                   </TableHeaderColumn>
                   <TableHeaderColumn
+                    dataAlign='center'
                     dataField='status'
                     width="25%">
                     status

@@ -56,13 +56,14 @@ class Backupsets extends Component  {
                 <br />
               </div>
               <div className="content">
-                <BootstrapTable
+                <BootstrapTable data={ this.state.backupsets } exportCSV={ true }
                   data={this.state.backupsets}
-                  bordered={false}
+                  bordered={true}
                   striped
                   pagination={true}
                   options={options}>
                   <TableHeaderColumn
+                    dataAlign='center'
                     dataField='appid'
                     isKey
                     width="15%"
@@ -70,6 +71,7 @@ class Backupsets extends Component  {
                     App Id
                   </TableHeaderColumn>
                   <TableHeaderColumn
+                    dataAlign='center'
                     dataField='boid'
                     width="20%"
                     filter={ { type: 'TextFilter'} }
@@ -77,23 +79,27 @@ class Backupsets extends Component  {
                     BOID
                   </TableHeaderColumn>
                   <TableHeaderColumn
+                    dataAlign='center'
                     dataField='bsid'
                     width="15%"
                     dataSort>
                     BSID
                   </TableHeaderColumn>
                   <TableHeaderColumn
+                    dataAlign='center'
                     dataField='backupset_name'
                     width="40%"
                     dataSort>
                     Backupset Name
                   </TableHeaderColumn>
                   <TableHeaderColumn
+                    dataAlign='center'
                     dataField='status'
                     width="25%">
                     Status
                   </TableHeaderColumn>
                   <TableHeaderColumn
+                    dataAlign='center'
                     dataField='num_files'
                     width="20%">
                     No. of Files

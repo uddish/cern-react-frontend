@@ -52,7 +52,7 @@ class Backupsets extends Component  {
           <div className="col-md-12">
             <div className="card">
               <div className="header">
-                <h2 className="text-margin-left-10px">Backup Operations</h2>
+                <h2 className="text-margin-left-10px">Backup Sets</h2>
                 <br />
               </div>
               <div className="content">

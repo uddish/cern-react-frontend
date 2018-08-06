@@ -145,7 +145,6 @@ class RecoverBackupForm extends React.Component {
         <hr/>
         <br />
         <div className="text-margin-left">
-        <h2>Backups Recovered</h2>
         <BackupsRecovered backupsRecovered={this.state.backupsRecovered}/>
         </div>
       </div>

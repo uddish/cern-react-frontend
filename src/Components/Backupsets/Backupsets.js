@@ -78,13 +78,6 @@ class Backupsets extends Component  {
                   </TableHeaderColumn>
                   <TableHeaderColumn
                     dataAlign='center'
-                    dataField='bsid'
-                    width="10%"
-                    dataSort>
-                    BSID
-                  </TableHeaderColumn>
-                  <TableHeaderColumn
-                    dataAlign='center'
                     dataField='backupset_name'
                     width="40%"
                     filter={ { type: 'TextFilter'} }

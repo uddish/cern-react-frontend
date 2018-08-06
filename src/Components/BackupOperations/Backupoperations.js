@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
+import moment from 'moment';
 import { BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 
@@ -46,6 +47,14 @@ class Backupoperations extends Component  {
       hideSizePerPage: true,
     };
 
+    function dateFormatter(cell: any) {
+    if (!cell) {
+          return "";
+    }
+    // return `${moment(cell).format("DD-MM-YYYY")? moment(cell).format("DD-MM-YYYY hh:mm:ss"):moment(cell).format("DD-MM-YYYY hh:mm:ss") }`;
+    return `${moment(cell).format("DD-MM-YYYY")? moment(cell).format("MM-DD-YYYY H:mm:ss"):moment(cell).format("MM-DD-YYYY H:mm:ss") }`;
+    }
+
     return (
       <div className="container-fluid">
         <div className="row">
@@ -88,18 +97,21 @@ class Backupoperations extends Component  {
                     dataAlign='center'
                     dataField='last_backup_timestamp'
                     width="30%"
+                    dataFormat={dateFormatter}
                     dataSort>
                     Last Backup Timestamp
                   </TableHeaderColumn>
                   <TableHeaderColumn
                     dataAlign='center'
                     dataField='start_time'
+                    dataFormat={dateFormatter}
                     width="35%">
                     Start Time
                   </TableHeaderColumn>
                   <TableHeaderColumn
                     dataAlign='center'
                     dataField='completion_time'
+                    dataFormat={dateFormatter}
                     width="25%">
                     Completion Time
                   </TableHeaderColumn>

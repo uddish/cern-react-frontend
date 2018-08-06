@@ -53,7 +53,6 @@ class BackupsRecovered extends Component {
               </div>
               <div className="content">
                 <BootstrapTable data={ this.state.backupsRecovered } exportCSV={ true }
-                  data={this.state.backupsRecovered}
                   bordered={true}
                   striped
                   pagination={true}

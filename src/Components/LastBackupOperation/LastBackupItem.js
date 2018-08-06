@@ -48,15 +48,15 @@ class LastBackupItem extends Component  {
             <div className="row">
               <div className="col-xs-4">
                 <h3>Backup Type</h3>
-                <h4 class="home-application-data">{this.props.lastBackup.backup_type}</h4>
+                <h4 className="home-application-data">{this.props.lastBackup.backup_type}</h4>
               </div>
               <div className="col-xs-4">
                 <h3>Last Backup Timestamp</h3>
-                <h4 class="home-application-data">{this.state.lastBackupTimestamp}</h4>
+                <h4 className="home-application-data">{this.state.lastBackupTimestamp}</h4>
               </div>
               <div className="col-xs-4">
                 <h3>Start Time</h3>
-                <h4 class="home-application-data">{this.state.startTime}</h4>
+                <h4 className="home-application-data">{this.state.startTime}</h4>
               </div>
             </div>
 
@@ -65,11 +65,11 @@ class LastBackupItem extends Component  {
             <div className="row">
               <div className="col-xs-4">
                 <h3>Completion Time</h3>
-                <h4 class="home-application-data">{this.state.completionTime}</h4>
+                <h4 className="home-application-data">{this.state.completionTime}</h4>
               </div>
               <div className="col-xs-8">
                 <h3>Status</h3>
-                <h4 class="text-color-green">{this.props.lastBackup.status}</h4>
+                <h4 className="text-color-green">{this.props.lastBackup.status}</h4>
               </div>
             </div>
             <br />

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import HomeDataItem from './HomeDataItem';
 import $ from 'jquery';
-import ExclusionList from '../ExclusionList/ExclusionList';
 
 
 class HomeData extends Component {

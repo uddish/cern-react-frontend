@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import ApplicationsDataItem from  './ApplicationsDataItem';
 import $ from 'jquery';
 
 

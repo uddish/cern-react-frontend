@@ -57,7 +57,6 @@ class Backupsets extends Component  {
               </div>
               <div className="content">
                 <BootstrapTable data={ this.state.backupsets } exportCSV={ true }
-                  data={this.state.backupsets}
                   bordered={true}
                   striped
                   pagination={true}

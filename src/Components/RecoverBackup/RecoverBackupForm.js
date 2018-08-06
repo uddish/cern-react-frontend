@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap';
-import DatePicker from 'react-datepicker';
-import moment from 'moment';
-import 'react-datepicker/dist/react-datepicker.css';
+// import DatePicker from 'react-datepicker';
+// import moment from 'moment';
+// import 'react-datepicker/dist/react-datepicker.css';
 import BackupsRecovered from './BackupsRecovered';
-import axios from 'axios';
+import DateTimePicker from 'react-datetime-picker'
+import $ from 'jquery';
 
 
 class RecoverBackupForm extends React.Component {
@@ -15,8 +16,8 @@ class RecoverBackupForm extends React.Component {
       cluster_name: '',
       application_name: '',
       list_of_files: '',
-      selected_date: moment(),
-      requested_date: moment(),
+      selected_date: new Date(),
+      requested_date: new Date(),
       status: '',
       recovery_state: '',
       recovery_job_id: '',
@@ -63,33 +64,28 @@ class RecoverBackupForm extends React.Component {
       application_name: this.state.application_name,
       // selected_date: null,
       // requested_date: null,
-      status: "PENDING",
       list_of_files: this.state.list_of_files,
-      recovery_state: "PENDING",
-      recovery_job_id: 20,
-      staging_directory: "abc",
+      recovery_job_id: 22,
+      recovery_state: "Pending",
+      status: "Pending",
+      staging_directory: "-",
     }
 
     console.log(data);
 
-    // axios.post('http://127.0.0.1:8000/backup-recovery/', { data }, {
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     }
-    //   }).then(res => {
-    //     console.log(res);
-    //     console.log(res.data);
-    //   })
-    axios({
-      url: 'http://127.0.0.1:8000/backup-recovery/',
-      method: 'post',
+    $.ajax({
+      url: 'https://hadoop-backup-catalog.web.cern.ch/backup-recovery/',
+      dataType: 'json',
+      type: 'POST',
       data: data,
-      headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-      }
-    }).then(res => {
-        console.log(res);
-      })
+      success: function(data) {
+        this.setState({data: data});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error('Error -> ', status, err.toString());
+      }.bind(this)
+    });
+
   }
 
   render() {
@@ -132,13 +128,12 @@ class RecoverBackupForm extends React.Component {
               type="text" name="list_of_files"/>
           </FormGroup>
           <h5 className="text-margin-left">Recovery Date and Time</h5>
-          <DatePicker
+          <DateTimePicker
             className="date-picker-input"
-            selected={this.state.selected_date}
+            value={this.state.selected_date}
             onChange={this.handleDateChange}
-            showTimeSelect
-            dateFormat="LLL"
           />
+          <br />
           <Button type="submit" className="text-margin-left" bsStyle="primary">Submit</Button>
         </form>
         <br />

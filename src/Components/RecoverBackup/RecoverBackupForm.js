@@ -21,8 +21,6 @@ class RecoverBackupForm extends React.Component {
       status: '',
       recovery_state: '',
       recovery_job_id: '',
-      recovery_start_time: '',
-      recovery_end_time: '',
       staging_directory: '',
     };
 

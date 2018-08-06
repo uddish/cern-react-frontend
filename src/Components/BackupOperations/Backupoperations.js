@@ -38,7 +38,7 @@ class Backupoperations extends Component  {
 
   render() {
     const options = {
-      sizePerPage: 10,
+      sizePerPage: 15,
       prePage: 'Previous',
       nextPage: 'Next',
       firstPage: 'First',

@@ -8,6 +8,7 @@ import RecoverBackupForm from './Components/RecoverBackup/RecoverBackupForm';
 import './App.css';
 import { Navbar,NavItem,Nav } from 'react-bootstrap';
 import $ from 'jquery';
+import SideBar from './Components/SideBar';
 
 //To match router path
 const Route = ({ path, component }) => {
@@ -61,7 +62,6 @@ class App extends Component {
   render() {
     return(
       <div className="App">
-
         <Navbar>
           <Navbar.Header>
             <Navbar.Brand>
@@ -69,9 +69,6 @@ class App extends Component {
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
-            <NavItem eventKey={1} href="/applications">
-              <font color="white">Applications</font>
-            </NavItem>
             <NavItem eventKey={2} href="/backupsets">
               <font color="white">Backup Sets</font>
             </NavItem>

@@ -38,7 +38,7 @@ class Backupsets extends Component  {
 
   render() {
     const options = {
-      sizePerPage: 10,
+      sizePerPage: 15,
       prePage: 'Previous',
       nextPage: 'Next',
       firstPage: 'First',
@@ -65,22 +65,21 @@ class Backupsets extends Component  {
                     dataAlign='center'
                     dataField='appid'
                     isKey
-                    width="15%"
+                    width="10%"
                     dataSort>
                     App Id
                   </TableHeaderColumn>
                   <TableHeaderColumn
                     dataAlign='center'
                     dataField='boid'
-                    width="20%"
-                    filter={ { type: 'TextFilter'} }
+                    width="10%"
                     dataSort>
                     BOID
                   </TableHeaderColumn>
                   <TableHeaderColumn
                     dataAlign='center'
                     dataField='bsid'
-                    width="15%"
+                    width="10%"
                     dataSort>
                     BSID
                   </TableHeaderColumn>
@@ -88,6 +87,7 @@ class Backupsets extends Component  {
                     dataAlign='center'
                     dataField='backupset_name'
                     width="40%"
+                    filter={ { type: 'TextFilter'} }
                     dataSort>
                     Backupset Name
                   </TableHeaderColumn>

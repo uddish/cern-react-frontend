@@ -28,6 +28,7 @@ class App extends Component {
     super();
     this.state = {
       username: '',
+      isAdmin: false
   }
 }
   //Use for initial binding(component has been rendered once)
@@ -48,6 +49,7 @@ class App extends Component {
       success: function(data) {
         this.setState({
           username: data.username,
+          isAdmin: data.isAdmin,
         }, function() {
           console.log(this.state);
         })
@@ -67,6 +69,7 @@ class App extends Component {
               <a href="/"><font color="white">Home</font></a>
             </Navbar.Brand>
           </Navbar.Header>
+
           <Nav>
             <NavItem eventKey={2} href="/backupsets">
               <font color="white">Backup Sets</font>
@@ -80,20 +83,20 @@ class App extends Component {
             <NavItem eventKey={5} href="/reports">
               <font color="white">Reports</font>
             </NavItem>
+            <NavItem eventKey={1} href="/recover-backup">
+              <font color="white">Recover Backup</font>
+            </NavItem>
           </Nav>
           <Nav pullRight>
-          <NavItem eventKey={1} href="/recover-backup">
-            <font color="white">Recover Backup</font>
-          </NavItem>
           <NavItem eventKey={1} href="#">
             <font color="white">Sign Out</font>
           </NavItem>
           </Nav>
         </Navbar>
         <Route path='/$' component={()=>
-            <div>
-              <HomeData homeData={HomeData}/>
-            </div>
+          <div>
+            <HomeData homeData={HomeData}/>
+          </div>
         }/>
         <Route path='/applications' component={ApplicationsData}/>
         <Route path='/backupsets' component={Backupsets}/>

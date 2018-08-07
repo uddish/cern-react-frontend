@@ -48,7 +48,7 @@ class BackupsRecovered extends Component {
       if (!cell) {
             return "";
       }
-      return `${moment(cell).format("DD-MM-YYYY")? moment(cell).format("MM-DD-YYYY H-Z:mm:ss Z"):moment(cell).format("MM-DD-YYYY H:mm:ss Z") }`;
+      return `${moment(cell).format("DD-MM-YYYY")? moment(cell).format("MM-DD-YYYY H:mm:ss Z"):moment(cell).format("MM-DD-YYYY H:mm:ss Z") }`;
     }
 
     return (

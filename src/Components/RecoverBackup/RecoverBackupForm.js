@@ -5,6 +5,7 @@ import BackupsRecovered from './BackupsRecovered';
 import DateTimePicker from 'react-datetime-picker'
 import $ from 'jquery';
 import Select from 'react-select';
+import NotificationSystem from 'react-notification-system';
 
 
 class RecoverBackupForm extends React.Component {
@@ -26,6 +27,15 @@ class RecoverBackupForm extends React.Component {
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleClusterOptionChange = this.handleClusterOptionChange.bind(this);
     this.handleApplicationOptionChange = this.handleApplicationOptionChange.bind(this);
+  }
+
+  showNotification(position) {
+    this.notificationSystem.addNotification({
+      message: 'Backup Recovery Requested',
+      level: 'success',
+      autoDismiss: 0,
+      position,
+    });
   }
 
   getApplicationsData() {
@@ -95,6 +105,7 @@ class RecoverBackupForm extends React.Component {
       data: data,
       success: function(data) {
         this.setState({data: data});
+        this.showNotification('tc');
       }.bind(this),
       error: function(xhr, status, err) {
         console.error('Error -> ', status, err.toString());
@@ -149,6 +160,8 @@ class RecoverBackupForm extends React.Component {
         <div className="text-margin-left">
         <BackupsRecovered backupsRecovered={this.state.backupsRecovered}/>
         </div>
+        <NotificationSystem
+          ref={ref => this.notificationSystem = ref} />
       </div>
     );
   }

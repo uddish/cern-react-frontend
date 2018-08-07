@@ -51,7 +51,6 @@ class Backupoperations extends Component  {
     if (!cell) {
           return "";
     }
-    // return `${moment(cell).format("DD-MM-YYYY")? moment(cell).format("DD-MM-YYYY hh:mm:ss"):moment(cell).format("DD-MM-YYYY hh:mm:ss") }`;
     return `${moment(cell).format("DD-MM-YYYY")? moment(cell).format("MM-DD-YYYY H:mm:ss"):moment(cell).format("MM-DD-YYYY H:mm:ss") }`;
     }
 
@@ -82,7 +81,6 @@ class Backupoperations extends Component  {
                     dataAlign='center'
                     dataField='boid'
                     width="20%"
-                    filter={ { type: 'TextFilter'} }
                     dataSort>
                     BOID
                   </TableHeaderColumn>
@@ -90,6 +88,7 @@ class Backupoperations extends Component  {
                     dataAlign='center'
                     dataField='backup_type'
                     width="25%"
+                    filter={ { type: 'TextFilter'} }
                     dataSort>
                     Backup Type
                   </TableHeaderColumn>
@@ -97,6 +96,7 @@ class Backupoperations extends Component  {
                     dataAlign='center'
                     dataField='last_backup_timestamp'
                     width="30%"
+                    filter={ { type: 'TextFilter'} }
                     dataFormat={dateFormatter}
                     dataSort>
                     Last Backup Timestamp
@@ -119,7 +119,7 @@ class Backupoperations extends Component  {
                     dataAlign='center'
                     dataField='status'
                     width="25%">
-                    status
+                    Status
                   </TableHeaderColumn>
                 </BootstrapTable>
               </div>

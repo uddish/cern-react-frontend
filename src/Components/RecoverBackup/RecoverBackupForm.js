@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap';
 // import DatePicker from 'react-datepicker';
-// import moment from 'moment';
+import moment from 'moment';
 // import 'react-datepicker/dist/react-datepicker.css';
 import BackupsRecovered from './BackupsRecovered';
 import DateTimePicker from 'react-datetime-picker'
@@ -18,10 +18,6 @@ class RecoverBackupForm extends React.Component {
       list_of_files: '',
       selected_date: new Date(),
       requested_date: new Date(),
-      status: '',
-      recovery_state: '',
-      recovery_job_id: '',
-      staging_directory: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -60,13 +56,9 @@ class RecoverBackupForm extends React.Component {
       username: "Uddish Verma",
       cluster_name: this.state.cluster_name,
       application_name: this.state.application_name,
-      // selected_date: null,
-      // requested_date: null,
+      requested_timestamp: moment(this.state.selected_date).format('YYYY-MM-DD HH:mm:ss'),
+      recovery_timestamp: moment(this.state.requested_date).format('YYYY-MM-DD HH:mm:ss'),
       list_of_files: this.state.list_of_files,
-      recovery_job_id: 22,
-      recovery_state: "Pending",
-      status: "Pending",
-      staging_directory: "-",
     }
 
     console.log(data);

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import $ from 'jquery';
 import { BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
+import moment from 'moment';
 
 
 class BackupsRecovered extends Component {
@@ -42,6 +43,14 @@ class BackupsRecovered extends Component {
       lastPage: 'Last',
       hideSizePerPage: true,
     };
+
+    function dateFormatter(cell: any) {
+      if (!cell) {
+            return "";
+      }
+      return `${moment(cell).format("DD-MM-YYYY")? moment(cell).format("MM-DD-YYYY H-Z:mm:ss Z"):moment(cell).format("MM-DD-YYYY H:mm:ss Z") }`;
+    }
+
     return (
       <div className="container-fluid">
         <div className="row">
@@ -83,6 +92,7 @@ class BackupsRecovered extends Component {
                   <TableHeaderColumn
                     dataAlign='center'
                     dataField='recovery_timestamp'
+                    dataFormat={dateFormatter}
                     width="30%"
                     dataSort>
                     Recovery Timestamp
@@ -90,6 +100,7 @@ class BackupsRecovered extends Component {
                   <TableHeaderColumn
                     dataAlign='center'
                     dataField='requested_timestamp'
+                    dataFormat={dateFormatter}
                     width="25%">
                     Requested Timestamp
                   </TableHeaderColumn>

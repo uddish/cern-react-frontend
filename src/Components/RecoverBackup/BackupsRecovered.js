@@ -19,7 +19,7 @@ class BackupsRecovered extends Component {
 //TODO add appid/username here
   getRecoveredBackups() {
     $.ajax({
-      url: 'https://hadoop-backup-catalog.web.cern.ch/backup-recovery/',
+      url: 'https://hadoop-backup-catalog.web.cern.ch/backup-recovery/' + this.props.username + '/',
       dataType: 'json',
       cache: 'false',
       contentType: 'application/json',

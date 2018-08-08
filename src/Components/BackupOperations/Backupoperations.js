@@ -20,7 +20,7 @@ class Backupoperations extends Component  {
   //Fetching backup operations from the API
   getBackupOperations() {
     $.ajax({
-      url: 'https://hadoop-backup-catalog.web.cern.ch/backup-operations/3/',
+      url: 'https://hadoop-backup-catalog.web.cern.ch/backup-operations/' + this.props.username + '/',
       dataType: 'json',
       cache: 'false',
       contentType: 'application/json',

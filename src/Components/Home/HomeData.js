@@ -17,7 +17,7 @@ class HomeData extends Component {
 
   getApplicationsData() {
     $.ajax({
-      url: 'https://hadoop-backup-catalog.web.cern.ch/applications/3/',
+      url: 'https://hadoop-backup-catalog.web.cern.ch/applications/' + (this.props.username) + '/',
       dataType: 'json',
       cache: 'false',
       contentType: 'application/json',

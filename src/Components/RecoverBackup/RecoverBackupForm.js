@@ -12,7 +12,6 @@ class RecoverBackupForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: 'Uddish Verma',
       cluster_name: '',
       application_name: '',
       list_of_files: '',
@@ -40,7 +39,7 @@ class RecoverBackupForm extends React.Component {
 
   getApplicationsData() {
     $.ajax({
-      url: 'https://hadoop-backup-catalog.web.cern.ch/applications/3/',
+      url: 'https://hadoop-backup-catalog.web.cern.ch/applications/' + this.props.username + '/',
       dataType: 'json',
       cache: 'false',
       contentType: 'application/json',
@@ -88,7 +87,7 @@ class RecoverBackupForm extends React.Component {
     event.preventDefault();
 
     const data = {
-      username: "Uddish Verma",
+      username: this.props.username,
       cluster_name: this.state.cluster_name.value,
       application_name: this.state.application_name.value,
       requested_timestamp: moment(this.state.selected_date).format('YYYY-MM-DD HH:mm:ss'),
@@ -99,7 +98,7 @@ class RecoverBackupForm extends React.Component {
     console.log(data);
 
     $.ajax({
-      url: 'https://hadoop-backup-catalog.web.cern.ch/backup-recovery/',
+      url: 'https://hadoop-backup-catalog.web.cern.ch/backup-recovery/' + this.props.username + '/',
       dataType: 'json',
       type: 'POST',
       data: data,
@@ -158,7 +157,7 @@ class RecoverBackupForm extends React.Component {
         <hr/>
         <br />
         <div className="text-margin-left">
-        <BackupsRecovered backupsRecovered={this.state.backupsRecovered}/>
+        <BackupsRecovered backupsRecovered={this.state.backupsRecovered} username={this.props.username}/>
         </div>
         <NotificationSystem
           ref={ref => this.notificationSystem = ref} />

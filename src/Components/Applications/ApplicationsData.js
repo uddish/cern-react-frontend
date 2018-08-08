@@ -7,6 +7,7 @@ class ApplicationsData extends Component {
     super();
     this.state = {
       applicationData: [],
+      username: '',
     }
   }
 
@@ -16,7 +17,7 @@ class ApplicationsData extends Component {
 
   getApplicationsData() {
     $.ajax({
-      url: 'https://hadoop-backup-catalog.web.cern.ch/applications/3/',
+      url: 'https://hadoop-backup-catalog.web.cern.ch/applications/' + (this.props.username) + '/',
       dataType: 'json',
       cache: 'false',
       contentType: 'application/json',
@@ -25,7 +26,7 @@ class ApplicationsData extends Component {
           console.log(this.state);
         })
       }.bind(this),
-      error: function(xhr, status, err) {
+      error: function(xhr, status, err) {12222
         console.log(err);
       }
     })

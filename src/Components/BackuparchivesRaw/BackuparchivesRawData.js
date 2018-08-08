@@ -23,7 +23,7 @@ componentDidMount() {
 //Fetching backup archives raw data from the API
   getBackuparchivesRaw() {
     $.ajax({
-      url: 'https://hadoop-backup-catalog.web.cern.ch/backuparchives-raw/3/?page='+ (this.state.pageCount),
+      url: 'https://hadoop-backup-catalog.web.cern.ch/backuparchives-raw/' + (this.props.username) + '/?page='+ (this.state.pageCount),
       dataType: 'json',
       cache: 'false',
       contentType: 'application/json',
@@ -91,7 +91,7 @@ componentDidMount() {
           <div className="row">
              <div>
                <h1 className="title">Backup Archives Raw Data</h1>
-               <table class="rwd-table">
+               <table className="rwd-table">
                 <tr>
                   <th>BOID</th>
                   <th>BSID</th>

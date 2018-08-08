@@ -27,7 +27,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      username: '',
+      username: 'uverma',
       isAdmin: false
   }
 }
@@ -93,16 +93,42 @@ class App extends Component {
           </NavItem>
           </Nav>
         </Navbar>
+
         <Route path='/$' component={()=>
           <div>
-            <HomeData homeData={HomeData}/>
+            <HomeData homeData={HomeData} username={this.state.username}/>
           </div>
         }/>
-        <Route path='/applications' component={ApplicationsData}/>
-        <Route path='/backupsets' component={Backupsets}/>
-        <Route path='/backuparchives-raw' component={BackuparchivesRawData}/>
-        <Route path='/backup-operations' component={Backupoperations}/>
-        <Route path='/recover-backup' component={RecoverBackupForm}/>
+
+        <Route path='/backuparchives-raw' component={()=>
+          <div>
+            <BackuparchivesRawData backuparchivesRaw={BackuparchivesRawData} username={this.state.username}/>
+          </div>
+        }/>
+
+        <Route path='/applications' component={()=>
+          <div>
+            <ApplicationsData applicationsData={ApplicationsData} username={this.state.username}/>
+          </div>
+        }/>
+
+        <Route path='/backupsets' component={()=>
+          <div>
+            <Backupsets backupsets={Backupsets} username={this.state.username}/>
+          </div>
+        }/>
+
+        <Route path='/backup-operations' component={()=>
+          <div>
+            <Backupoperations backupoperations={Backupoperations} username={this.state.username}/>
+          </div>
+        }/>
+
+        <Route path='/recover-backup' component={()=>
+          <div>
+            <RecoverBackupForm recoverbackup={RecoverBackupForm} username={this.state.username}/>
+          </div>
+        }/>
 
       </div>
     );

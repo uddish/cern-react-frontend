@@ -93,7 +93,6 @@ componentDidMount() {
                <h1 className="title">Backup Archives Raw Data</h1>
                <table class="rwd-table">
                 <tr>
-                  <th>App Id</th>
                   <th>BOID</th>
                   <th>BSID</th>
                   <th>File Name</th>

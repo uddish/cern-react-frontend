@@ -11,7 +11,7 @@ table {
   margin-right: 10px;
 }
 th, td {
-  /* border: 1px solid #003366; */
+  border: 1px solid #003366;
   padding: 10px;
   font-family: sans-serif;
 }

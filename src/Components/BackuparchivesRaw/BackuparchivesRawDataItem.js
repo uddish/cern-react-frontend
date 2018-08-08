@@ -5,7 +5,6 @@ class BackuparchivesRawDataItem extends Component {
     return (
       //TODO Add handle_raw later and last_Seen
       <tr>
-        <td>{this.props.backuparchivesRaw.appid}</td>
         <td>{this.props.backuparchivesRaw.boid}</td>
         <td>{this.props.backuparchivesRaw.bsid}</td>
         <td>{this.props.backuparchivesRaw.file_name}</td>

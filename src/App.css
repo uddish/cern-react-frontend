@@ -54,7 +54,7 @@ th, td {
    margin: 30px;
 }
 .form-text-view  {
-  width: 40%;
+  width: 31.3%;
 }
 .text-margin-left  {
   margin-left: 30px;
@@ -75,4 +75,14 @@ th, td {
    margin-left: 30px;
    margin-bottom: 30px;
    width: 30%;
+}
+.ct-label {
+    font-size: 9px;
+    font-weight: bold;
+}
+.ct-series-a .ct-bar, .ct-series-a .ct-line, .ct-series-a .ct-point, .ct-series-a .ct-slice-donut{
+    stroke: #203470;
+}
+.ct-series-a .ct-area {
+    fill: #203470;
 }

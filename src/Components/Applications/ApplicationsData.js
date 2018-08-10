@@ -26,7 +26,7 @@ class ApplicationsData extends Component {
           console.log(this.state);
         })
       }.bind(this),
-      error: function(xhr, status, err) {12222
+      error: function(xhr, status, err) {
         console.log(err);
       }
     })

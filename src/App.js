@@ -5,6 +5,7 @@ import Backupsets from './Components/Backupsets/Backupsets';
 import Backupoperations from './Components/BackupOperations/Backupoperations';
 import BackuparchivesRawData from './Components/BackuparchivesRaw/BackuparchivesRawData';
 import RecoverBackupForm from './Components/RecoverBackup/RecoverBackupForm';
+import UserBehavior from './Components/Reports/UserBehavior';
 import './App.css';
 import { Navbar,NavItem,Nav } from 'react-bootstrap';
 import $ from 'jquery';
@@ -77,7 +78,7 @@ class App extends Component {
             <NavItem eventKey={3} href="/backuparchives-raw">
               <font color="white">Backup Archives Raw Data</font>
             </NavItem>
-            <NavItem eventKey={4} href="/backup-operations">
+            <NavItem eventKey={4} href="/backup-operations">``
               <font color="white">Backup Operations</font>
             </NavItem>
             <NavItem eventKey={5} href="/reports">
@@ -127,6 +128,12 @@ class App extends Component {
         <Route path='/recover-backup' component={()=>
           <div>
             <RecoverBackupForm recoverbackup={RecoverBackupForm} username={this.state.username}/>
+          </div>
+        }/>
+
+      <Route path='/reports' component={()=>
+          <div>
+            <UserBehavior userBehavior={UserBehavior} username={this.state.username}/>
           </div>
         }/>
 

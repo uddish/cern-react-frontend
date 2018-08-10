@@ -19,7 +19,7 @@ class Backupsets extends Component  {
 //Fetching backup sets data from the API
   getBackupSets() {
     $.ajax({
-      url: 'https://hadoop-backup-catalog.web.cern.ch/backupsets/uverma/',
+      url: 'https://hadoop-backup-catalog.web.cern.ch/backupsets/' + this.props.username + '/',
       dataType: 'json',
       cache: 'false',
       contentType: 'application/json',

@@ -26,7 +26,7 @@ $ oc login
 $ oc new-app --docker-image="gitlab-registry.cern.ch/db/hbackup-webapp-frontend/react-docker" 
 ```
 
-#### To switch between Openshifts projects
+#### To switch between Openshift projects
 ```sh
 To list the Projects 
 $ oc projects

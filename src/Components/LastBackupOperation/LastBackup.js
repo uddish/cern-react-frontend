@@ -17,7 +17,7 @@ class LastBackup extends Component {
 
   getLastbackup() {
     $.ajax({
-      url: 'https://hadoop-backup-catalog.web.cern.ch/backup-operations/uverma/latest_backup/',
+      url: 'https://hadoop-backup-catalog.web.cern.ch/backup-operations/' + this.props.username + '/latest_backup/',
       dataType: 'json',
       cache: 'false',
       contentType: 'application/json',

@@ -35,7 +35,7 @@ class HomeData extends Component {
   render() {
     let homeDataItems = this.state.homeApplicationData.map(homeApplicationData =>  {
       return (
-        <HomeDataItem key={homeApplicationData.id} homeApplicationData = {homeApplicationData} />
+        <HomeDataItem key={homeApplicationData.id} homeApplicationData = {homeApplicationData} username={this.props.username} />
       );
     });
 

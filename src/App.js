@@ -29,8 +29,10 @@ class App extends Component {
     super();
     this.state = {
       username: 'uverma',
-      isAdmin: false
+      isAdmin: false,
+      applicationName: '',
   }
+  this.handleSelect = this.handleSelect.bind(this);
 }
   //Use for initial binding(component has been rendered once)
   // componentWillMount() {
@@ -39,6 +41,7 @@ class App extends Component {
   //Use for API calls
   componentDidMount() {
     this.getUserDetails();
+    this.getUsernameForAdminPanel();
   }
 
   getUserDetails()  {
@@ -61,6 +64,36 @@ class App extends Component {
     })
   }
 
+  //This api is called if the admin selects an applicationsData
+  //This functions maps the appname <> username to make further api calls
+  getUsernameForAdminPanel()  {
+    $.ajax({
+      url: 'http://127.0.0.1:8000/get-username/' + (this.state.applicationName) + '/',
+      dataType: 'json',
+      cache: 'false',
+      contentType: 'application/json',
+      success: function(data) {
+        this.setState({
+          username: data[0]['username'],
+        }, function() {
+          console.log(this.state);
+        })
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.log(err);
+      }
+    })
+  }
+
+  handleSelect(eventKey)  {
+      this.setState({
+        applicationName: eventKey
+      }, function() {
+        this.getUsernameForAdminPanel();
+      })
+      console.log(eventKey);
+  }
+
   render() {
     return(
       <div className="App">
@@ -71,40 +104,28 @@ class App extends Component {
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
-            <NavItem eventKey={2} href="/backupsets">
+            <NavItem eventKey={1} href="/backupsets">
               <font color="white">Backup Sets</font>
             </NavItem>
-            <NavItem eventKey={3} href="/backuparchives-raw">
+            <NavItem eventKey={2} href="/backuparchives-raw">
               <font color="white">Backup Archives Raw Data</font>
             </NavItem>
-            <NavItem eventKey={4} href="/backup-operations">
+            <NavItem eventKey={3} href="/backup-operations">
               <font color="white">Backup Operations</font>
             </NavItem>
-            <NavItem eventKey={5} href="/reports">
+            <NavItem eventKey={4} href="/reports">
               <font color="white">Reports</font>
             </NavItem>
-            <NavItem eventKey={1} href="/recover-backup">
+            <NavItem eventKey={5} href="/recover-backup">
               <font color="white">Recover Backup</font>
             </NavItem>
           </Nav>
           <Nav pullRight>
-          <NavItem eventKey={1} href="#">
+          <NavItem eventKey={6} href="#">
             <font color="white">Sign Out</font>
           </NavItem>
           </Nav>
-          <Nav pullRight>
-            <NavDropdown title="App Name" id="right-nav-bar">
-              <MenuItem>ITMON</MenuItem>
-              <MenuItem>ITSEC</MenuItem>
-              <MenuItem>WLCGMON</MenuItem>
-              <MenuItem>ITMON_ARCHIVE</MenuItem>
-              <MenuItem>ATLAS_RUCIO</MenuItem>
-              <MenuItem>NXCALS_ARCHIVE</MenuItem>
-              <MenuItem>AWG</MenuItem>
-              <MenuItem>NXCALS</MenuItem>
-            </NavDropdown>
-            <MenuItem divider />
-          </Nav>
+          
         </Navbar>
 
         <Route path='/$' component={()=>

@@ -45,12 +45,12 @@ class HomeDataItem extends Component {
               </div>
               <div className="col-xs-4">
                 <h3>Exclusion List</h3>
-                <h4 className="home-application-data"><ExclusionList exlusionList={this.state.exclusionList}/></h4>
+                <h4 className="home-application-data"><ExclusionList exlusionList={this.state.exclusionList} username={this.props.username}/></h4>
               </div>
             </div>
             <br />
           </div>
-          <LastBackup lastBackup={this.state.lastBackup}/>
+          <LastBackup lastBackup={this.state.lastBackup} username={this.props.username}/>
         </div>
 
     );

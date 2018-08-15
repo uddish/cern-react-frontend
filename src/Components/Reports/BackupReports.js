@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
-import { BarChart, Area, ResponsiveContainer,  AreaChart, Line, Bar, Brush, Cell, CartesianGrid, ReferenceLine, ReferenceDot,
-  XAxis, YAxis, Tooltip, Legend, ErrorBar, LabelList, Label } from 'recharts';
+import { BarChart, Area, ResponsiveContainer,  AreaChart, Bar, CartesianGrid,
+  XAxis, YAxis, Tooltip, Legend } from 'recharts';
 
 class BackupReports extends Component{
   constructor() {

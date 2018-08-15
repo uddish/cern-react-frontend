@@ -17,7 +17,7 @@ class ExclusionList extends Component {
 
   getExclusionList() {
     $.ajax({
-      url: 'https://hadoop-backup-catalog.web.cern.ch/exclusion-list/uverma/',
+      url: 'https://hadoop-backup-catalog.web.cern.ch/exclusion-list/' + this.props.username + '/',
       dataType: 'json',
       cache: 'false',
       contentType: 'application/json',

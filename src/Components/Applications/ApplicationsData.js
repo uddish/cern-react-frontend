@@ -7,7 +7,6 @@ class ApplicationsData extends Component {
     super();
     this.state = {
       applicationData: [],
-      username: '',
     }
   }
 
@@ -54,7 +53,6 @@ class ApplicationsData extends Component {
                       <th>Service Contact</th>
                       <th>Service Contact Email</th>
                       <th>Age</th>
-
                     </tr>
                   </thead>
                   <tbody>

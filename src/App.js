@@ -41,7 +41,9 @@ class App extends Component {
   //Use for API calls
   componentDidMount() {
     this.getUserDetails();
-    this.getUsernameForAdminPanel();
+    if(this.state.isAdmin) {
+      this.getUsernameForAdminPanel();
+    }
   }
 
   getUserDetails()  {
@@ -68,7 +70,7 @@ class App extends Component {
   //This functions maps the appname <> username to make further api calls
   getUsernameForAdminPanel()  {
     $.ajax({
-      url: 'http://127.0.0.1:8000/get-username/' + (this.state.applicationName) + '/',
+      url: 'http://127.0.0.1:8000/get-username/' + (localStorage.getItem('applicationName')) + '/',
       dataType: 'json',
       cache: 'false',
       contentType: 'application/json',
@@ -89,7 +91,10 @@ class App extends Component {
       this.setState({
         applicationName: eventKey
       }, function() {
-        this.getUsernameForAdminPanel();
+        localStorage.setItem('applicationName', this.state.applicationName);
+        if(this.state.isAdmin)  {
+          this.getUsernameForAdminPanel();
+        }
       })
       console.log(eventKey);
   }
@@ -125,7 +130,40 @@ class App extends Component {
             <font color="white">Sign Out</font>
           </NavItem>
           </Nav>
-          
+          {(() => {
+            if (this.state.isAdmin) {
+              return (
+                <Nav pullRight>
+                  <NavDropdown eventKey={7} title="App Name" id="right-nav-bar">
+                    <MenuItem onSelect={this.handleSelect} eventKey={'ITMON'}>ITMON</MenuItem>
+                    <MenuItem onSelect={this.handleSelect} eventKey={'ITSEC'}>ITSEC</MenuItem>
+                    <MenuItem onSelect={this.handleSelect} eventKey={'WLCGMON'}>WLCGMON</MenuItem>
+                    <MenuItem onSelect={this.handleSelect} eventKey={'ITMON_ARCHIVE'}>ITMON_ARCHIVE</MenuItem>
+                    <MenuItem onSelect={this.handleSelect} eventKey={'ATLAS_RUCIO'}>ATLAS_RUCIO</MenuItem>
+                    <MenuItem onSelect={this.handleSelect} eventKey={'NXCALS_ARCHIVE'}>NXCALS_ARCHIVE</MenuItem>
+                    <MenuItem onSelect={this.handleSelect} eventKey={'AWG'}>AWG</MenuItem>
+                    <MenuItem onSelect={this.handleSelect} eventKey={'NXCALS'}>NXCALS</MenuItem>
+                    <MenuItem onSelect={this.handleSelect} eventKey={'CASTORLOGS'}>CASTORLOGS</MenuItem>
+                    <MenuItem onSelect={this.handleSelect} eventKey={'ATLEVIND'}>ATLEVIND</MenuItem>
+                    <MenuItem onSelect={this.handleSelect} eventKey={'USER_ANALYTIX'}>USER_ANALYTIX</MenuItem>
+                    <MenuItem onSelect={this.handleSelect} eventKey={'LFR'}>LFR</MenuItem>
+                    <MenuItem onSelect={this.handleSelect} eventKey={'HADOOPQA'}>HADOOPQA</MenuItem>
+                    <MenuItem onSelect={this.handleSelect} eventKey={'NXCALS_NEW'}>NXCALS_NEW</MenuItem>
+                  </NavDropdown>
+                  <MenuItem divider />
+                </Nav>
+              );
+            }
+            else {
+              return (
+                <Nav pullRight>
+                <NavItem eventKey={6} href="#">
+                  <font color="white">{this.state.username}</font>
+                </NavItem>
+                </Nav>
+              );
+            }
+          })()}
         </Navbar>
 
         <Route path='/$' component={()=>

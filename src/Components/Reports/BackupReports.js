@@ -3,7 +3,7 @@ import $ from 'jquery';
 import { BarChart, Area, ResponsiveContainer,  AreaChart, Line, Bar, Brush, Cell, CartesianGrid, ReferenceLine, ReferenceDot,
   XAxis, YAxis, Tooltip, Legend, ErrorBar, LabelList, Label } from 'recharts';
 
-class UserBehaviorChart extends Component{
+class BackupReports extends Component{
   constructor() {
     super();
     this.state = {
@@ -17,7 +17,7 @@ class UserBehaviorChart extends Component{
 
   getBackupReportsData() {
     $.ajax({
-      url: 'http://127.0.0.1:8000/backup-reports/',
+      url: 'https://hadoop-backup-catalog.web.cern.ch/backup-reports/' + (this.props.username) + '/',
       dataType: 'json',
       cache: 'false',
       contentType: 'application/json',
@@ -70,9 +70,10 @@ class UserBehaviorChart extends Component{
           <Area type="monotone" dataKey="num_files" stroke="#203470" fillOpacity={1} fill="url(#color_num_files)" />
         </AreaChart>
       </ResponsiveContainer>
+
     </div>
     );
   }
 }
 
-export default UserBehaviorChart;
+export default BackupReports;

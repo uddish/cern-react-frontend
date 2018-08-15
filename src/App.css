@@ -19,6 +19,10 @@ th, td {
 .navbar-default{
   background: #203470
 }
+#right-nav-bar  {
+  color: white;
+  font-weight: bold;
+}
 #pagination-container {
   width:80%;
   margin : 0;
@@ -28,12 +32,12 @@ th, td {
   margin : 0;
   float : left ;
 }
-.container  {
+/* .container  {
   display: -webkit-flex;
   -webkit-align-items: center;
   display: flex;
   align-items: center;
-}
+} */
 .row {
   width: 100%;
 }

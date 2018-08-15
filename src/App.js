@@ -5,9 +5,9 @@ import Backupsets from './Components/Backupsets/Backupsets';
 import Backupoperations from './Components/BackupOperations/Backupoperations';
 import BackuparchivesRawData from './Components/BackuparchivesRaw/BackuparchivesRawData';
 import RecoverBackupForm from './Components/RecoverBackup/RecoverBackupForm';
-import UserBehavior from './Components/Reports/UserBehavior';
+import BackupReports from './Components/Reports/BackupReports';
 import './App.css';
-import { Navbar,NavItem,Nav } from 'react-bootstrap';
+import { Navbar,NavItem,Nav, NavDropdown, MenuItem } from 'react-bootstrap';
 import $ from 'jquery';
 
 //To match router path
@@ -70,7 +70,6 @@ class App extends Component {
               <a href="/"><font color="white">Home</font></a>
             </Navbar.Brand>
           </Navbar.Header>
-
           <Nav>
             <NavItem eventKey={2} href="/backupsets">
               <font color="white">Backup Sets</font>
@@ -78,7 +77,7 @@ class App extends Component {
             <NavItem eventKey={3} href="/backuparchives-raw">
               <font color="white">Backup Archives Raw Data</font>
             </NavItem>
-            <NavItem eventKey={4} href="/backup-operations">``
+            <NavItem eventKey={4} href="/backup-operations">
               <font color="white">Backup Operations</font>
             </NavItem>
             <NavItem eventKey={5} href="/reports">
@@ -92,6 +91,19 @@ class App extends Component {
           <NavItem eventKey={1} href="#">
             <font color="white">Sign Out</font>
           </NavItem>
+          </Nav>
+          <Nav pullRight>
+            <NavDropdown title="App Name" id="right-nav-bar">
+              <MenuItem>ITMON</MenuItem>
+              <MenuItem>ITSEC</MenuItem>
+              <MenuItem>WLCGMON</MenuItem>
+              <MenuItem>ITMON_ARCHIVE</MenuItem>
+              <MenuItem>ATLAS_RUCIO</MenuItem>
+              <MenuItem>NXCALS_ARCHIVE</MenuItem>
+              <MenuItem>AWG</MenuItem>
+              <MenuItem>NXCALS</MenuItem>
+            </NavDropdown>
+            <MenuItem divider />
           </Nav>
         </Navbar>
 
@@ -133,7 +145,7 @@ class App extends Component {
 
       <Route path='/reports' component={()=>
           <div>
-            <UserBehavior userBehavior={UserBehavior} username={this.state.username}/>
+            <BackupReports backupReports={BackupReports} username={this.state.username}/>
           </div>
         }/>
 

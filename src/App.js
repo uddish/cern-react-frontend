@@ -41,7 +41,7 @@ class App extends Component {
   //Use for API calls
   componentDidMount() {
     this.getUserDetails();
-    if(this.state.isAdmin) {
+    if(this.state.isAdmin === true) {
       this.getUsernameForAdminPanel();
     }
   }
@@ -70,7 +70,7 @@ class App extends Component {
   //This functions maps the appname <> username to make further api calls
   getUsernameForAdminPanel()  {
     $.ajax({
-      url: 'http://127.0.0.1:8000/get-username/' + (localStorage.getItem('applicationName')) + '/',
+      url: 'https://hadoop-backup-catalog.web.cern.ch/get-username/' + (localStorage.getItem('applicationName')) + '/',
       dataType: 'json',
       cache: 'false',
       contentType: 'application/json',
@@ -92,7 +92,7 @@ class App extends Component {
         applicationName: eventKey
       }, function() {
         localStorage.setItem('applicationName', this.state.applicationName);
-        if(this.state.isAdmin)  {
+        if(this.state.isAdmin === true)  {
           this.getUsernameForAdminPanel();
         }
       })
@@ -131,7 +131,7 @@ class App extends Component {
           </NavItem>
           </Nav>
           {(() => {
-            if (this.state.isAdmin) {
+            if (this.state.isAdmin === true) {
               return (
                 <Nav pullRight>
                   <NavDropdown eventKey={7} title="App Name" id="right-nav-bar">

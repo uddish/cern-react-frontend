@@ -28,9 +28,9 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      username: 'luser',
-      isAdmin: false,
-      applicationName: '',
+      username: 'uverma',
+      isAdmin: true,
+      applicationName: 'App Name',
   }
   this.handleSelect = this.handleSelect.bind(this);
 }
@@ -109,20 +109,26 @@ class App extends Component {
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
-            <NavItem eventKey={1} href="/backupsets">
-              <font color="white">Backup Sets</font>
-            </NavItem>
-            <NavItem eventKey={2} href="/backuparchives-raw">
-              <font color="white">Backup Archives Raw Data</font>
-            </NavItem>
             <NavItem eventKey={3} href="/backup-operations">
               <font color="white">Backup Operations</font>
             </NavItem>
-            <NavItem eventKey={4} href="/reports">
-              <font color="white">Reports</font>
+            {(() => {
+              if (this.state.isAdmin === true) {
+                return (
+                  <NavItem eventKey={1} href="/backupsets">
+                    <font color="white">Backup Sets</font>
+                  </NavItem>
+                );
+              }
+            })()}
+            <NavItem eventKey={2} href="/backuparchives-raw">
+              <font color="white">Backup Archives</font>
             </NavItem>
             <NavItem eventKey={5} href="/recover-backup">
               <font color="white">Recover Backup</font>
+            </NavItem>
+            <NavItem eventKey={4} href="/reports">
+              <font color="white">Reports</font>
             </NavItem>
           </Nav>
           <Nav pullRight>
@@ -134,7 +140,7 @@ class App extends Component {
             if (this.state.isAdmin === true) {
               return (
                 <Nav pullRight>
-                  <NavDropdown eventKey={7} title="App Name" id="right-nav-bar">
+                  <NavDropdown eventKey={7} title={this.state.applicationName} id="right-nav-bar">
                     <MenuItem onSelect={this.handleSelect} eventKey={'ITMON'}>ITMON</MenuItem>
                     <MenuItem onSelect={this.handleSelect} eventKey={'ITSEC'}>ITSEC</MenuItem>
                     <MenuItem onSelect={this.handleSelect} eventKey={'WLCGMON'}>WLCGMON</MenuItem>

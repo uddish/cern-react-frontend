@@ -35,7 +35,8 @@ class LastBackupItem extends Component  {
   }
 
   componentDidMount() {
-    this.convertDateTimeFields();
+    if(this.props.lastBackup.completion_time !== null)
+      this.convertDateTimeFields();
   }
 
 

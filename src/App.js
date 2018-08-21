@@ -210,7 +210,7 @@ class App extends Component {
 
       <Route path='/reports' component={()=>
           <div>
-            <BackupReports backupReports={BackupReports} username={this.state.username}/>
+            <BackupReports backupReports={BackupReports} username={this.state.username} isAdmin={this.state.isAdmin}/>
           </div>
         }/>
 

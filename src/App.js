@@ -29,7 +29,7 @@ class App extends Component {
     super();
     this.state = {
       username: 'uverma',
-      isAdmin: true,
+      isAdmin: false,
       applicationName: 'App Name',
   }
   this.handleSelect = this.handleSelect.bind(this);
